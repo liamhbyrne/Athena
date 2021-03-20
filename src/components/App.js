@@ -12,6 +12,7 @@ import { NavigationBar}  from './NavigationBar';
 import Profile from "./Profile";
 import Home from "./Home";
 import CreateTask from "./CreateTask";
+import SkillsChooser from "./SkillsChooser"
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/skills" component={SkillsChooser} />
             </Switch>
           </AuthProvider>
         </Router>
