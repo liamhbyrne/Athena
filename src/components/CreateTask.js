@@ -80,8 +80,8 @@ export default function CreateTask() {
             desc: descRef.current.value,
             priority: priorityRef.current.value,
             date: new Date(),
-            created_by: auth.currentUser.email,
-            skills: [].concat.apply([], tags)
+            skills: [].concat.apply([], tags),
+            recipientUID: null
             
         }).then(function() {
             console.log("Document successfully written!");
