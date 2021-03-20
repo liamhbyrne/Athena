@@ -1,11 +1,10 @@
 import React, { useState } from "react"
-import { Card, Button, Alert } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import { NavigationBar } from './NavigationBar';
+import { useHistory } from "react-router-dom"
 import "../css/Dashboard.css"
 import ReactDOM from 'react-dom'
-import { auth, db, app}  from '../firebase'
+import { auth, db}  from '../firebase'
 
 // Display Functions
 function resetContent() {
@@ -15,6 +14,7 @@ function resetContent() {
   }
 }
 
+// Display all the users Active Tasks
 async function openActiveTasks() {
   resetContent();
   const taskRef = db.collection("task");
@@ -24,6 +24,7 @@ async function openActiveTasks() {
   })
 }
 
+// Display the current Task Pool
 async function openTaskPool() {
   resetContent();
   const taskRef = db.collection("task");
@@ -33,6 +34,7 @@ async function openTaskPool() {
   });
 }
 
+// Creates each individual Active Task 
 var activeTaskCount = 0;
 function createActiveTask (email, name, desc) {
   var elements = <div class="activeTask">
@@ -49,9 +51,8 @@ function createActiveTask (email, name, desc) {
   activeTaskCount++;
 }
 
-
+// Creates each individual Pool Task
 var colorMap = {"Firebase":"#ff0460", "Node.js":"#cbdc56", "React":"#64a3ea"};
-var poolTaskCount = 0;
 function createPoolTask(email, name, desc, skills) {
   console.log(typeof skills, skills);
   var elements = <div class="task-container">
@@ -72,15 +73,15 @@ function createPoolTask(email, name, desc, skills) {
   mainDiv.appendChild(tempDiv);
   mainDiv.appendChild(document.createElement("p"));
   ReactDOM.render(elements, document.getElementById(activeTaskCount));
-  poolTaskCount++;
 }
 
+// Calculates a percentage for how relavent the task is for the currentUser
 function calculateRelevancy (userSkills, requiredSkils) {
   var total = requiredSkils.length;
   var same = 0;
   requiredSkils.forEach(skill => {
     userSkills.forEach(userSkill => {
-      if (skill.valueOf() == userSkill.valueOf()) {
+      if (skill.valueOf() === userSkill.valueOf()) {
         same++;
       }
     })
@@ -90,8 +91,8 @@ function calculateRelevancy (userSkills, requiredSkils) {
 
 // Main Code
 export default function Dashboard() {
-  const [error, setError] = useState("")
-  const { currentUser, logout } = useAuth()
+  const [setError] = useState("")
+  const { logout } = useAuth()
   const history = useHistory()
 
   async function handleLogout() {

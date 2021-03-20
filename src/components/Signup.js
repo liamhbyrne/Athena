@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
-import { Container } from "react-bootstrap"
 
 export default function Signup() {
+  // Constants
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
@@ -16,10 +16,12 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault()
 
+    // Returns an error if the passwords are not equal
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
 
+    // Attemps to sign up the user and move to the /skills page
     try {
       setError("")
       setLoading(true)

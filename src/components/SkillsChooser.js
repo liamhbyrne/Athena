@@ -4,9 +4,8 @@ import InputTag from "./InputTag";
 import { db, auth }  from '../firebase'
 
 export default function SkillsChooser() {
-
+    // Constants
     const [tags, setTags] = React.useState([]);
-
     const displayNameRef = useRef()
     const companyRef = useRef()
     const departmentRef = useRef()
@@ -23,6 +22,7 @@ export default function SkillsChooser() {
         setTags([...remainingTags]);
       };
 
+      // Writes all the users skills to the Cloud Firestore
       function writeSkillToFirestore() {
 
         db.collection("user").doc(auth.currentUser.uid).set({

@@ -1,9 +1,8 @@
 import React from "react";
 
-// componente <Tag />
+// Constants
 const tagStyle = {
   display: "inline-block",
-  //backgroundColor: "withe",
   fontSize: "0.9em",
   margin: "5px",
   border: "1px solid lightblue",
@@ -11,6 +10,7 @@ const tagStyle = {
   cursor: "pointer"
 };
 
+// Displays the tag
 function Tag({ onDeleteTag, value, color }) {
   var tag = (
     <div style={tagStyle}>

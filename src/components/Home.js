@@ -1,15 +1,15 @@
 import React, { useState } from "react"
-import { Card, Button, Alert } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import { NavigationBar } from './NavigationBar';
+import { useHistory } from "react-router-dom"
 import "../css/Home.css"
 
 export default function Home() {
-  const [error, setError] = useState("")
-  const { currentUser, logout } = useAuth()
+  const [setError] = useState("")
+  const { logout } = useAuth()
   const history = useHistory()
 
+  // Attempst to log the user in
   async function handleLogout() {
     setError("")
 
@@ -39,12 +39,12 @@ export default function Home() {
                 <p><b>Introduction to what Athena does, and why companies/public should use it.</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin finibus risus nec faucibus. Sed aliquam nisl a nunc malesuada, vel consectetur diam congue. Curabitur suscipit erat sem, nec egestas libero tempus et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et mattis felis. Nullam nisi nulla, pharetra non convallis nec, placerat at nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
               </div>
               <div class="column">
-                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home1.jpg`} id="image1"></img>
+                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home1.jpg`} id="image1" alt=""></img>
               </div>
             </div>
             <div class="section">
               <div class="column">
-                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home2.PNG`} id="image2"></img>
+                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home2.PNG`} id="image2" alt=""></img>
               </div>
               <div class="column">
                 <h2><b>Heading 2</b></h2>
@@ -57,7 +57,7 @@ export default function Home() {
                 <p><b>Explains that the UI is easy to use and isn't complicated for the users. Also states that you can easily manage your tasks.</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin finibus risus nec faucibus. Sed aliquam nisl a nunc malesuada, vel consectetur diam congue. Curabitur suscipit erat sem, nec egestas libero tempus et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et mattis felis. Nullam nisi nulla, pharetra non convallis nec, placerat at nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
               </div>
               <div class="column">
-                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home3.PNG`} id="image3"></img>
+                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home3.PNG`} id="image3" alt=""></img>
               </div>
             </div>
             <div class="section">

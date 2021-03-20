@@ -1,22 +1,26 @@
 import React, { useRef, useState } from "react"
-import { Card, Button, Alert, Form } from "react-bootstrap"
+import { Card, Button, Form } from "react-bootstrap"
 import { auth, db}  from '../firebase'
 import InputTag from "./InputTag";
 import Select from 'react-select'
+import { useHistory } from "react-router-dom"
 
 
 export default function CreateTask() {
 
+    // Constants
     const nameRef = useRef()
     const descRef = useRef()
     const [priority, setPriority] = useState(null);
-
     const [tags, setTags] = React.useState([]);
+    const history = useHistory()
 
+    // Function to add the tag
     const onAddTag = tag => {
         setTags([...tags, tag]);
       };
 
+    // Function to delete the tag
     const onDeleteTag = tag => {
       let remainingTags = tags.filter(t => {
         return t !== tag;
@@ -31,6 +35,7 @@ export default function CreateTask() {
       { value: 'Low', label: 'Low' }
     ]
 
+    // Main Return function
     return (
     <>
       <Card>
@@ -48,17 +53,19 @@ export default function CreateTask() {
             />
             </div>
 
-
+            {/* Name field */}
             <Form.Group id="name">
               <Form.Label>Task Name</Form.Label>
               <Form.Control type="text" ref={nameRef} required />
             </Form.Group>
 
+            {/* Description field */}
             <Form.Group id="desc">
               <Form.Label>Description</Form.Label>
               <Form.Control type="textarea" ref={descRef} required />
             </Form.Group>
 
+            {/* Priority field */}
             <Form.Group id="pri">
               <Form.Label>Priority</Form.Label>
               <Select
@@ -70,6 +77,7 @@ export default function CreateTask() {
         
             </Form.Group>
             
+            {/* Create the task */}
             <Button className="w-100" type="button" onClick={writeTaskToFirestore}>
               Create
             </Button>
@@ -84,7 +92,7 @@ export default function CreateTask() {
         return Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
 
-
+    // Attemps to write the tak information to the Cloud Firestore
     function writeTaskToFirestore() {
 
         db.collection("task").doc(uid()).set({
@@ -98,6 +106,7 @@ export default function CreateTask() {
             
         }).then(function() {
             console.log("Document successfully written!");
+            history.push("/dashboard")
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);

@@ -1,6 +1,7 @@
 import React from "react";
 import TagList from "./TagList";
 
+// Constants
 const cStyle = {
   position: "relative",
   display: "inline-block",
@@ -16,6 +17,7 @@ const iStyle = {
   border: "0"
 };
 
+// Addes a tag
 function InputTag({ defaultTags, onAddTag, onDeleteTag, placeHolder }) {
   const onKeyUp = e => {
     if (e.key === "," || e.key === "Enter") {
@@ -26,7 +28,7 @@ function InputTag({ defaultTags, onAddTag, onDeleteTag, placeHolder }) {
       e.target.value = "";
     }
   };
-
+  
   const _onDeleteTag = tag => {
     onDeleteTag(tag);
   };
