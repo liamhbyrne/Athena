@@ -29,13 +29,13 @@ async function openTaskPool() {
   const taskRef = db.collection("task");
   const myTasks = await taskRef.where("created_by", "!=", auth.currentUser.email).get();
   myTasks.forEach(doc => {
-    createActiveTask(doc.get("created_by"), doc.get("name"), doc.get("desc"));
+    createPoolTask(doc.get("created_by"), doc.get("name"), doc.get("desc"), doc.get("skills"));
   });
 }
 
 var activeTaskCount = 0;
 function createActiveTask (email, name, desc) {
-  var elements = <div id="activeTask">
+  var elements = <div class="activeTask">
     <h2>{name}</h2>
     <h4>Owner: {email}</h4>
     <p>{desc}</p>
@@ -49,11 +49,22 @@ function createActiveTask (email, name, desc) {
   activeTaskCount++;
 }
 
-function createPoolTask (email, name, desc) {
-  var elements = <div id="poolTask">
-    <h2>{name}</h2>
-    <h4>Owner: {email}</h4>
-    <p>{desc}</p>
+
+var colorMap = {"Firebase":"#ff0460", "Node.js":"#cbdc56", "React":"#64a3ea"};
+var poolTaskCount = 0;
+function createPoolTask(email, name, desc, skills) {
+  console.log(typeof skills, skills);
+  var elements = <div class="task-container">
+    <div class="task-name">{name}</div>
+    <div class="task-body">
+      <div class="task-desc">{desc}</div>
+      <div class="task-skills">
+        {skills.map(skill => (
+          <div class="task-skill" style={{backgroundColor: colorMap[skill]}}>{skill}</div>
+        ))}
+      </div>
+      <div class="task-owner">{email}</div>
+    </div>
   </div>;
   var mainDiv = document.getElementById("mainContent");
   var tempDiv = document.createElement("div");
@@ -61,7 +72,7 @@ function createPoolTask (email, name, desc) {
   mainDiv.appendChild(tempDiv);
   mainDiv.appendChild(document.createElement("p"));
   ReactDOM.render(elements, document.getElementById(activeTaskCount));
-  activeTaskCount++;
+  poolTaskCount++;
 }
 
 // Main Code
