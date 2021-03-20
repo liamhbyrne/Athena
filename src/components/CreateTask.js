@@ -1,9 +1,12 @@
-import React from 'react'
-import firebase from "firebase/app"
+
+  
+
+
+
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { auth, db, app}  from '../firebase'
+
 
 
 export default function CreateTask() {
@@ -12,51 +15,37 @@ export default function CreateTask() {
     const descRef = useRef()
     const skillsRef = useRef()
     const priorityRef = useRef()
-    const dateCreatedRef = useRef()
-    const createdByRef = useRef()
-
-    /** ADD FUNCTIONALITY TO CREATE A NEW TASK. NEED TO FIND A WAY TO GET CURRENT USER'S NAME (ID BETTER) FOR CREATED BY */
-
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
-    const history = useHistory()
-
-    async function handleSubmit(e) {
-        e.preventDefault()
-
-        try {
-        setError("")
-        setLoading(true)
-        await login(emailRef.current.value, passwordRef.current.value)
-        history.push("/")
-        } catch {
-        setError("Failed to log in")
-        }
-
-        setLoading(false)
-    }
 
     return (
     <>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Create Task</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
 
-          <Form onSubmit={handleSubmit}>
+          <Form>
 
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+            <Form.Group id="name">
+              <Form.Label>Task Name</Form.Label>
+              <Form.Control type="text" ref={nameRef} required />
             </Form.Group>
 
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
+            <Form.Group id="desc">
+              <Form.Label>Description</Form.Label>
+              <Form.Control type="textarea" ref={descRef} required />
             </Form.Group>
 
-            <Button disabled={loading} className="w-100" type="submit">
-              Log In
+            <Form.Group id="skills">
+              <Form.Label>Skills</Form.Label>
+              <Form.Control type="text" ref={skillsRef}  />
+            </Form.Group>
+
+            <Form.Group id="priority">
+              <Form.Label>Priority</Form.Label>
+              <Form.Control type="text" ref={priorityRef}  />
+            </Form.Group>
+
+            <Button className="w-100" type="button" onClick={writeTaskToFirestore}>
+              Create
             </Button>
           </Form>
 
@@ -65,10 +54,21 @@ export default function CreateTask() {
     </>
     )
     
-    export function writeTaskToFirestore(date) {
-        db.collection("task").doc(date).set({
-            name: "Test",
-            date: date
+    function uid(){
+        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+
+
+    async function writeTaskToFirestore() {
+
+        db.collection("task").doc(uid()).set({
+            name: nameRef.current.value,
+            desc: descRef.current.value,
+            skills: skillsRef.current.value,
+            priority: priorityRef.current.value,
+            date: new Date(),
+            created_by: auth.currentUser.email
+            
         }).then(function() {
             console.log("Document successfully written!");
         })
