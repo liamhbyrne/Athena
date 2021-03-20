@@ -12,6 +12,7 @@ import { NavigationBar}  from './NavigationBar';
 import Profile from "./Profile";
 import Home from "./Home";
 import CreateTask from "./CreateTask";
+import SkillsChooser from "./SkillsChooser"
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/create-task" component={CreateTask} />
+              <PrivateRoute path="/skills" component={SkillsChooser} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />

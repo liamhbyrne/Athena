@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
-import { auth, db, app}  from '../firebase'
+import React, { useRef } from "react"
+import { Form, Button, Card } from "react-bootstrap"
+import { auth, db}  from '../firebase'
 
 
 export default function CreateTask() {
@@ -53,7 +53,7 @@ export default function CreateTask() {
     }
 
 
-    async function writeTaskToFirestore() {
+    function writeTaskToFirestore() {
 
         db.collection("task").doc(uid()).set({
             userUID: auth.currentUser.uid,
