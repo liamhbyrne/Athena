@@ -2,13 +2,14 @@ import React, { useRef, useState } from "react"
 import { Card, Button, Alert, Form } from "react-bootstrap"
 import { auth, db}  from '../firebase'
 import InputTag from "./InputTag";
+import Select from 'react-select'
 
 
 export default function CreateTask() {
 
     const nameRef = useRef()
     const descRef = useRef()
-    const priorityRef = useRef()
+    const [priority, setPriority] = useState(null);
 
     const [tags, setTags] = React.useState([]);
 
@@ -24,6 +25,12 @@ export default function CreateTask() {
     };
 
 
+    const options = [
+      { value: 'High', label: 'High' },
+      { value: 'Medium', label: 'Medium' },
+      { value: 'Low', label: 'Low' }
+    ]
+
     return (
     <>
       <Card>
@@ -32,7 +39,7 @@ export default function CreateTask() {
 
           <Form>
 
-            <div>Type a skill followed by a comma or enter</div>
+            <div>Type a skill followed by a comma or enter:</div>
             <div>
             <InputTag
                 onAddTag={onAddTag}
@@ -52,11 +59,17 @@ export default function CreateTask() {
               <Form.Control type="textarea" ref={descRef} required />
             </Form.Group>
 
-            <Form.Group id="priority">
+            <Form.Group id="pri">
               <Form.Label>Priority</Form.Label>
-              <Form.Control type="text" ref={priorityRef}  />
+              <Select
+                options={options}
+                onChange={setPriority}
+                placeholder={'priority'}
+                clearable={false}
+            />
+        
             </Form.Group>
-
+            
             <Button className="w-100" type="button" onClick={writeTaskToFirestore}>
               Create
             </Button>
@@ -67,7 +80,7 @@ export default function CreateTask() {
     </>
     )
     
-    function uid(){
+    function uid() {
         return Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
 
@@ -78,7 +91,7 @@ export default function CreateTask() {
             userUID: auth.currentUser.uid,
             name: nameRef.current.value,
             desc: descRef.current.value,
-            priority: priorityRef.current.value,
+            priority: priority.value,
             date: new Date(),
             skills: [].concat.apply([], tags),
             recipientUID: null
