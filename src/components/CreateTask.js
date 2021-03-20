@@ -53,7 +53,7 @@ export default function CreateTask() {
     }
 
 
-    async function writeTaskToFirestore() {
+    function writeTaskToFirestore() {
 
         db.collection("task").doc(uid()).set({
             userUID: auth.currentUser.uid,

@@ -11,9 +11,6 @@ const tagStyle = {
   cursor: "pointer"
 };
 
-/*TODO: aggiungere la possibilità di dare un colore al tag inserendolo dopo il nome del tag con la sintassi {<colore>}
- * modificare il parser all'interno di InputTag per identificare l'eventuale colore e passarlo come prop al componente Tag
- */
 function Tag({ onDeleteTag, value, color }) {
   var tag = (
     <div style={tagStyle}>

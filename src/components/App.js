@@ -45,10 +45,10 @@ function App() {
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/create-task" component={CreateTask} />
+              <PrivateRoute path="/skills" component={SkillsChooser} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
-              <Route path="/skills" component={SkillsChooser} />
             </Switch>
           </AuthProvider>
         </Router>
