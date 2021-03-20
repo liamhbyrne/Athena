@@ -51,6 +51,7 @@ body, html {
 #mainimage {
     width: 80vh;
     height: auto;
+    border-radius: 10%;
 }
 
 #image1 {

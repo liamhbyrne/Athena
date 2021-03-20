@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import "../css/UpdateProfile.css"
 
 export default function UpdateProfile() {
   // Constants
@@ -47,11 +48,12 @@ export default function UpdateProfile() {
     <>
       <Card>
         <Card.Body>
+          <div id="cont">
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
+              <Form.Label style={{color: "white"}}>Email</Form.Label>
               <Form.Control
                 type="email"
                 ref={emailRef}
@@ -60,7 +62,7 @@ export default function UpdateProfile() {
               />
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label style={{color: "white"}}>Password</Form.Label>
               <Form.Control
                 type="password"
                 ref={passwordRef}
@@ -68,7 +70,7 @@ export default function UpdateProfile() {
               />
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Label style={{color: "white"}}>Password Confirmation</Form.Label>
               <Form.Control
                 type="password"
                 ref={passwordConfirmRef}
@@ -79,11 +81,12 @@ export default function UpdateProfile() {
               Update
             </Button>
           </Form>
+          <div className="w-100 text-center mt-2">
+            <Link to="/profile">Cancel</Link>
+          </div>
+          </div>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        <Link to="/">Cancel</Link>
-      </div>
     </>
   )
 }
