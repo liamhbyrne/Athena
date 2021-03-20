@@ -80,7 +80,7 @@ function createPoolTask(priority, name, desc, skills) {
   tempDiv.id = poolTaskCount;
   mainDiv.appendChild(tempDiv);
   mainDiv.appendChild(document.createElement("p"));
-  ReactDOM.render(elements, document.getElementById(activeTaskCount));
+  ReactDOM.render(elements, document.getElementById(poolTaskCount));
   poolTaskCount++;
 }
 
