@@ -3,13 +3,15 @@ import { Card, Button, Alert, Form } from "react-bootstrap"
 import { auth, db}  from '../firebase'
 import InputTag from "./InputTag";
 import Select from 'react-select'
+import { useHistory } from "react-router-dom";
 
 
 export default function CreateTask() {
 
     const nameRef = useRef()
     const descRef = useRef()
-    const [priority, setPriority] = useState(null);
+    const [priority, setPriority] = useState("High");
+    const history = useHistory()
 
     const [tags, setTags] = React.useState([]);
 
@@ -56,7 +58,7 @@ export default function CreateTask() {
 
             <Form.Group id="desc">
               <Form.Label>Description</Form.Label>
-              <Form.Control type="textarea" ref={descRef} required />
+              <Form.Control type="textarea" rows="5" ref={descRef} required />
             </Form.Group>
 
             <Form.Group id="pri">
@@ -98,6 +100,8 @@ export default function CreateTask() {
             
         }).then(function() {
             console.log("Document successfully written!");
+            history.push("/dashboard")
+            window.location.reload();
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
