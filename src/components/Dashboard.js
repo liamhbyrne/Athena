@@ -75,6 +75,19 @@ function createPoolTask(email, name, desc, skills) {
   poolTaskCount++;
 }
 
+function calculateRelevancy (userSkills, requiredSkils) {
+  var total = requiredSkils.length;
+  var same = 0;
+  requiredSkils.forEach(skill => {
+    userSkills.forEach(userSkill => {
+      if (skill.valueOf() == userSkill.valueOf()) {
+        same++;
+      }
+    })
+  });
+  return (Math.round((same / total) * 100) / 100) * 100
+}
+
 // Main Code
 export default function Dashboard() {
   const [error, setError] = useState("")

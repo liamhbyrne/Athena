@@ -18,12 +18,10 @@ const iStyle = {
 
 function InputTag({ defaultTags, onAddTag, onDeleteTag, placeHolder }) {
   const onKeyUp = e => {
-    //console.log(e.key);
-    // codice 188 per la virgola, 13 per invio
     if (e.key === "," || e.key === "Enter") {
-      let input = e.target.value.trim().split(",");
-      //esci se non ci sono tag
-      if (input.length === 0 || input[0] === "") return;
+      let input = e.target.value.trim();
+      input = input.replace(",", "");
+      if (input === "") return;
       onAddTag(input);
       e.target.value = "";
     }
