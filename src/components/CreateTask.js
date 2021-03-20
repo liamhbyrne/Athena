@@ -4,6 +4,7 @@ import { auth, db}  from '../firebase'
 import InputTag from "./InputTag";
 import Select from 'react-select'
 import { useHistory } from "react-router-dom";
+import "../css/CreateTask.css"
 
 export default function CreateTask() {
 
@@ -39,11 +40,11 @@ export default function CreateTask() {
     <>
       <Card>
         <Card.Body>
+          <div id="cont">
           <h2 className="text-center mb-4">Create Task</h2>
 
           <Form>
-
-            <div>Type a skill followed by a comma or enter:</div>
+            <Form.Label style={{color: "white"}}>Type a skill followed by a comma or enter:</Form.Label>
             <div>
             <InputTag
                 onAddTag={onAddTag}
@@ -54,19 +55,19 @@ export default function CreateTask() {
 
             {/* Name field */}
             <Form.Group id="name">
-              <Form.Label>Task Name</Form.Label>
+              <Form.Label style={{color: "white"}}>Task Name</Form.Label>
               <Form.Control type="text" ref={nameRef} required />
             </Form.Group>
 
             {/* Description field */}
             <Form.Group id="desc">
-              <Form.Label>Description</Form.Label>
+              <Form.Label style={{color: "white"}}>Description</Form.Label>
               <Form.Control type="textarea" rows="5" ref={descRef} required />
             </Form.Group>
 
             {/* Priority field */}
             <Form.Group id="pri">
-              <Form.Label>Priority</Form.Label>
+              <Form.Label style={{color: "white"}}>Priority</Form.Label>
               <Select
                 options={options}
                 onChange={setPriority}
@@ -81,7 +82,7 @@ export default function CreateTask() {
               Create
             </Button>
           </Form>
-
+          </div>
         </Card.Body>
       </Card>
     </>
