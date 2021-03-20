@@ -32,7 +32,9 @@ const Styles = styled.div`
 export const NavigationBar = () => (
   <Styles>
     <Navbar expand="lg">
-      <img className="img-fluid" src={`${process.env.PUBLIC_URL}/nav_logo.png`} id="navimage" alt=""></img>
+      <a href="/">
+        <img className="img-fluid" src={`${process.env.PUBLIC_URL}/nav_logo.png`} id="navimage" alt=""></img>
+      </a>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">

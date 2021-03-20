@@ -4,6 +4,8 @@ h1 {
 }
 
 
+
+
 body, html {
     height: 100%;
     overflow: hidden;
@@ -30,7 +32,18 @@ body, html {
     height: 80vh;
     overflow-y: hidden;
     color: #ffffff;
-    font-weight: bold;
+    font-weight: 400;
+}
+
+button{
+    background-color: #00a0e0;
+    margin-top: 20px !important;
+    color: white;
+    border-radius: 10px !important;
+    border: solid 5px #2c2732 !important;
+    padding: 10px 15px;
+    width: 300px;
+    box-shadow: inset 5px 5px 5px -1px #000000;
 }
 
 .mainPage::-webkit-scrollbar { width: 0 !important }
@@ -49,7 +62,7 @@ body, html {
 }
 
 #mainimage {
-    width: 80vh;
+    width: 50vh;
     height: auto;
     border-radius: 10%;
 }
@@ -57,13 +70,13 @@ body, html {
 #image1 {
     width: 60%;
     height: auto;
-    border-radius: 50%;
+
 }
 
 #image2 {
     width: 100%;
     height: auto;
-    border-radius: 25%;
+
     padding-right: 10px;
 }
 
