@@ -14,6 +14,7 @@ import Home from "./Home";
 import CreateTask from "./CreateTask";
 import SkillsChooser from "./SkillsChooser"
 
+// Main App
 function App() {
   return (
     <>

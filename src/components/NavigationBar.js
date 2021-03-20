@@ -26,9 +26,6 @@ export const NavigationBar = () => (
     <Navbar expand="lg">
       <Navbar.Brand href="/">Athena</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Form className="form-center">
-        <FormControl type="text" placeholder="Search for a Task..." className="" />
-      </Form>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item><Nav.Link href="/dashboard">My Dashboard</Nav.Link></Nav.Item> 
