@@ -14,7 +14,6 @@ export default function SkillsChooser() {
 
     const onAddTag = tag => {
         setTags([...tags, tag]);
-        writeSkillToFirestore()
       };
 
       const onDeleteTag = tag => {
@@ -59,7 +58,7 @@ export default function SkillsChooser() {
               <Form.Control type="text" ref={displayNameRef} required />
             </Form.Group>
             <Form.Group id="Company">
-              <Form.Label>Comapny</Form.Label>
+              <Form.Label>Company</Form.Label>
               <Form.Control type="text" ref={companyRef} required />
             </Form.Group>
             <Form.Group id="Department">
@@ -68,9 +67,6 @@ export default function SkillsChooser() {
             </Form.Group>
             <Button className="w-100" onMouseDown={writeSkillToFirestore}>Submit</Button>
             </Form>
-
-
-
         </Card.Body>
     </Card>
 

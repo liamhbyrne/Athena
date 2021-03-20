@@ -1,14 +1,28 @@
-import React, { useRef } from "react"
-import { Form, Button, Card } from "react-bootstrap"
+import React, { useRef, useState } from "react"
+import { Card, Button, Alert, Form } from "react-bootstrap"
 import { auth, db}  from '../firebase'
+import InputTag from "./InputTag";
 
 
 export default function CreateTask() {
 
     const nameRef = useRef()
     const descRef = useRef()
-    const skillsRef = useRef()
     const priorityRef = useRef()
+
+    const [tags, setTags] = React.useState([]);
+
+    const onAddTag = tag => {
+        setTags([...tags, tag]);
+      };
+
+    const onDeleteTag = tag => {
+      let remainingTags = tags.filter(t => {
+        return t !== tag;
+      });
+      setTags([...remainingTags]);
+    };
+
 
     return (
     <>
@@ -18,6 +32,16 @@ export default function CreateTask() {
 
           <Form>
 
+            <div>Type a skill followed by a comma or enter</div>
+            <div>
+            <InputTag
+                onAddTag={onAddTag}
+                onDeleteTag={onDeleteTag}
+                defaultTags={tags}
+            />
+            </div>
+
+
             <Form.Group id="name">
               <Form.Label>Task Name</Form.Label>
               <Form.Control type="text" ref={nameRef} required />
@@ -26,11 +50,6 @@ export default function CreateTask() {
             <Form.Group id="desc">
               <Form.Label>Description</Form.Label>
               <Form.Control type="textarea" ref={descRef} required />
-            </Form.Group>
-
-            <Form.Group id="skills">
-              <Form.Label>Skills</Form.Label>
-              <Form.Control type="text" ref={skillsRef}  />
             </Form.Group>
 
             <Form.Group id="priority">
@@ -59,10 +78,10 @@ export default function CreateTask() {
             userUID: auth.currentUser.uid,
             name: nameRef.current.value,
             desc: descRef.current.value,
-            skills: skillsRef.current.value,
             priority: priorityRef.current.value,
             date: new Date(),
-            created_by: auth.currentUser.email
+            created_by: auth.currentUser.email,
+            skills: [].concat.apply([], tags)
             
         }).then(function() {
             console.log("Document successfully written!");
