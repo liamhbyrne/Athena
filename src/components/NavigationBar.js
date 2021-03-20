@@ -8,6 +8,11 @@ const Styles = styled.div`
       background-color: #2C2F33;
       border-bottom: solid 3px #00b0f0;
     }
+   #navimage{
+       width: auto;
+       height: 80px;
+   }
+
   a, .navbar-nav, .navbar-light .nav-link {
     color: #FFFFFF;
     &:hover { color: white; } 
@@ -27,7 +32,7 @@ const Styles = styled.div`
 export const NavigationBar = () => (
   <Styles>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">Athena</Navbar.Brand>
+      <img className="img-fluid" src={`${process.env.PUBLIC_URL}/nav_logo.png`} id="navimage" alt=""></img>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
