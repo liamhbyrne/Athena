@@ -10,12 +10,12 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import { NavigationBar}  from './NavigationBar';
 import Profile from "./Profile";
+import Home from "./Home";
 import CreateTask from "./CreateTask";
 
 function App() {
   return (
     <>
-
     <AuthProvider>
       <Router>
         <Switch>
@@ -27,12 +27,13 @@ function App() {
     <Router>
       <AuthProvider>
         <Switch>
-          <PrivateRoute exact path="/" component={Dashboard} />
+          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
       </AuthProvider>
     </Router>
 
-    
+
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}>

@@ -1,0 +1,48 @@
+h1 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.mainPage {
+    max-height: 80vh;
+    overflow-y: scroll;
+    border: 1px solid gray;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(3rem);
+    scroll-snap-type: y mandatory;
+}
+
+.section {
+    border-bottom: 1px solid white;
+    padding: 1rem;
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    display: flex;
+    
+    justify-content: center;
+    scroll-snap-align: start;
+    height: 80vh;
+    overflow-y: hidden;
+}
+
+.mainPage::-webkit-scrollbar { width: 0 !important }
+
+.left {
+    float: left;
+    width: 50%;
+    background-color: #DDD;
+    padding: 30px 30px 30px 30px;
+}
+
+.right {
+    float: left;
+    width: 50%;
+    background-color: #CCC;
+}
