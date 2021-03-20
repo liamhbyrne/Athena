@@ -50,3 +50,14 @@ body, html {
     min-width: 10f;
     padding: 10px 10px 10px 10px;
 }
+
+#poolTask {
+    color: #213536;
+    background-color: white; /* Debugging */
+    border: 3px solid #6fa8aa; /* Debugging */
+    max-height: 15vh;
+    min-height: 15vh;
+    max-width: 10f;
+    min-width: 10f;
+    padding: 10px 10px 10px 10px;
+}

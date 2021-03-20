@@ -29,7 +29,7 @@ async function openTaskPool() {
   const taskRef = db.collection("task");
   const myTasks = await taskRef.where("created_by", "!=", auth.currentUser.email).get();
   myTasks.forEach(doc => {
-    createActiveTask(doc.get("created_by"), doc.get("name"), doc.get("desc"));
+    createPoolTask(doc.get("created_by"), doc.get("name"), doc.get("desc"));
   });
 }
 
@@ -62,6 +62,19 @@ function createPoolTask (email, name, desc) {
   mainDiv.appendChild(document.createElement("p"));
   ReactDOM.render(elements, document.getElementById(activeTaskCount));
   activeTaskCount++;
+}
+
+function calculateRelevancy (userSkills, requiredSkils) {
+  var total = requiredSkils.length;
+  var same = 0;
+  requiredSkils.forEach(skill => {
+    userSkills.forEach(userSkill => {
+      if (skill.valueOf() == userSkill.valueOf()) {
+        same++;
+      }
+    })
+  });
+  return (Math.round((same / total) * 100) / 100) * 100
 }
 
 // Main Code
