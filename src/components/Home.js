@@ -23,14 +23,12 @@ export default function Home() {
 
   return (
     <>
-      <Card>
-        <Card.Body>
+      <Card style={{backgroundColor: "#00b0f0"}}>
+        <Card.Body >
           <div class="mainPage">
             <div class="section">
               <div class="titleSection">
-                <h1 id="heading1" style={{fontSize: 150}}>Athena</h1>
-                <h3 id="heading2">Democratising Remote Workflows</h3>
-                <h6 id="heading3">Scroll Down for more Information</h6>
+              <img className="img-fluid" src={`${process.env.PUBLIC_URL}/mainicon.png`} id="mainimage" alt=""></img>
               </div>
             </div>
             <div class="section">

@@ -5,11 +5,11 @@ import styled from 'styled-components';
 // Style for the Navigation Bar
 const Styles = styled.div`
   .navbar {
-      background-color: #6fa8aa;
+      background-color: #2C2F33;
     }
   a, .navbar-nav, .navbar-light .nav-link {
     color: #FFFFFF;
-    &:hover { color: white; }
+    &:hover { color: white; } 
   }
   .navbar-brand {
     font-size: 1.4em;

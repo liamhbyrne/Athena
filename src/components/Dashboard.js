@@ -22,6 +22,10 @@ async function openActiveTasks() {
   myTasks.forEach(doc => {
     createActiveTask(doc.get("priority"), doc.get("name"), doc.get("desc"));
   })
+  var mainDiv = document.getElementById("mainContent");
+  var tempDiv = document.createElement("div");
+  tempDiv.id = 69;
+  mainDiv.appendChild(tempDiv);
 }
 
 // Display the current Task Pool
@@ -98,7 +102,16 @@ function calculateRelevancy (userSkills, requiredSkils) {
   return (Math.round((same / total) * 100) / 100) * 100
 }
 
-
+// Full screen display of the Task
+function displayLargePoolTask (email, name, desc, skills) {
+  var elements = <div id="largePoolTask">
+    <h3>{name}</h3>
+    <p>{email}</p>
+    <p>{desc}</p>
+    <p>X</p>
+  </div>
+  return elements;
+}
 
 
 // Main Code

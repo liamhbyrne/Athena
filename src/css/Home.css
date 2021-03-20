@@ -12,14 +12,13 @@ body, html {
 .mainPage {
     max-height: 80vh;
     overflow-y: scroll;
-    border-bottom: 1px solid white;
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(3rem);
     scroll-snap-type: y mandatory;
+    color: white;
 }
 
 .section {
-    border-bottom: 1px solid white;
     padding: 5rem;
     font-size: 25px;
     color: black;
@@ -30,6 +29,8 @@ body, html {
     scroll-snap-align: start;
     height: 80vh;
     overflow-y: hidden;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 .mainPage::-webkit-scrollbar { width: 0 !important }
@@ -37,19 +38,36 @@ body, html {
 .column {
     float: left;
     width: 50%;
-    background-color: white;
-    border-bottom: 1px solid white;
-    padding: 50px 50px 50px 50px;
+}
+
+.column h2 {
+    padding-top: 100px;
+}
+
+.column p {
+    padding-top: 10px;
+}
+
+#mainimage {
+    width: 80vh;
+    height: auto;
 }
 
 #image1 {
     width: 60%;
     height: auto;
+    border-radius: 50%;
 }
 
 #image2 {
     width: 100%;
     height: auto;
+    border-radius: 25%;
+    padding-right: 10px;
+}
+
+#image3 {
+    border-radius: 5%;
 }
 
 #heading1 {
