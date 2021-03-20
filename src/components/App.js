@@ -15,6 +15,7 @@ import CreateTask from "./CreateTask";
 import SkillsChooser from "./SkillsChooser"
 import "../css/App.css"
 
+// Main App
 function App() {
   return (
     <>
