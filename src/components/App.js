@@ -15,28 +15,22 @@ import Profile from "./Profile";
 function App() {
   return (
     <>
-    <Container
-      style={{ minWidth: "100%" }}
-    >
-        <AuthProvider>
-          <Router>
-            <Switch>
-              <PrivateRoute component={NavigationBar} />
-            </Switch>
-          </Router>
-        </AuthProvider>
-    </Container>
 
-
-    <Container>
+    <AuthProvider>
       <Router>
-        <AuthProvider>
-          <Switch>
-            <PrivateRoute exact path="/" component={Dashboard} />
-          </Switch>
-        </AuthProvider>
+        <Switch>
+          <PrivateRoute component={NavigationBar} />
+        </Switch>
       </Router>
-    </Container>
+    </AuthProvider>
+
+    <Router>
+      <AuthProvider>
+        <Switch>
+          <PrivateRoute exact path="/" component={Dashboard} />
+        </Switch>
+      </AuthProvider>
+    </Router>
 
     
     <Container
