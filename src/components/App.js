@@ -10,7 +10,7 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import { NavigationBar}  from './NavigationBar';
 import Profile from "./Profile";
-
+import CreateTask from "./CreateTask";
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <PrivateRoute path="/create-task" component={CreateTask} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
