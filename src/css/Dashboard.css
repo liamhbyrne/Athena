@@ -4,15 +4,33 @@ body, html {
 }
 
 
+.target {
+    width: 300px;
+    height: 300px;
+    border: solid 3px black;
+}
+
 .task-container {
-    width: 360px;
-    height: 180px;
+    width: 450px;
+    height: 225px;
     background-color: #213536;
     padding: 15px;
     color: white;
-    border: solid 3px #6fa8aa;
     box-shadow: 1px 2px 5px 0px #000000;
     position: relative;
+}
+
+
+.Low{
+    border: solid 5px rgb(11, 207, 11);
+}
+
+.Medium{
+    border: solid 5px orange;
+}
+
+.High{
+    border: solid 5px red;
 }
 
 .task-name {
@@ -20,6 +38,8 @@ body, html {
     font-weight: 600;
     font-size: 1.2rem;
 }
+
+
 
 .task-owner{
     color: grey;
