@@ -3,17 +3,16 @@ import { Card, Button, Form } from "react-bootstrap"
 import { auth, db}  from '../firebase'
 import InputTag from "./InputTag";
 import Select from 'react-select'
-import { useHistory } from "react-router-dom"
-
+import { useHistory } from "react-router-dom";
 
 export default function CreateTask() {
 
     // Constants
     const nameRef = useRef()
     const descRef = useRef()
-    const [priority, setPriority] = useState(null);
-    const [tags, setTags] = React.useState([]);
+    const [priority, setPriority] = useState("High");
     const history = useHistory()
+    const [tags, setTags] = React.useState([]);
 
     // Function to add the tag
     const onAddTag = tag => {
@@ -62,7 +61,7 @@ export default function CreateTask() {
             {/* Description field */}
             <Form.Group id="desc">
               <Form.Label>Description</Form.Label>
-              <Form.Control type="textarea" ref={descRef} required />
+              <Form.Control type="textarea" rows="5" ref={descRef} required />
             </Form.Group>
 
             {/* Priority field */}
@@ -107,6 +106,7 @@ export default function CreateTask() {
         }).then(function() {
             console.log("Document successfully written!");
             history.push("/dashboard")
+            window.location.reload();
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
