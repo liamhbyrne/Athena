@@ -8,9 +8,24 @@ import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
 import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
+import { NavigationBar}  from './NavigationBar';
+import Profile from "./Profile";
+
 
 function App() {
   return (
+    <>
+    <Container
+      style={{ minWidth: "100%" }}
+    >
+        <AuthProvider>
+          <Router>
+            <Switch>
+              <PrivateRoute component={NavigationBar} />
+            </Switch>
+          </Router>
+        </AuthProvider>
+    </Container>
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}
@@ -20,6 +35,7 @@ function App() {
           <AuthProvider>
             <Switch>
               <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
@@ -29,6 +45,7 @@ function App() {
         </Router>
       </div>
     </Container>
+    </>
   )
 }
 
