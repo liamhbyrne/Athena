@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
   .navbar {
-      background-color: #0069F2;
+      background-color: #6fa8aa;
     }
   a, .navbar-nav, .navbar-light .nav-link {
     color: #FFFFFF;
@@ -24,7 +24,7 @@ const Styles = styled.div`
 export const NavigationBar = () => (
   <Styles>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">TaskPool</Navbar.Brand>
+      <Navbar.Brand href="/">Athena</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Form className="form-center">
         <FormControl type="text" placeholder="Search for a Task..." className="" />
