@@ -33,6 +33,7 @@ export const NavigationBar = () => (
         <Nav className="ml-auto">
           <Nav.Item><Nav.Link href="/dashboard">My Dashboard</Nav.Link></Nav.Item> 
           <Nav.Item><Nav.Link href="/profile">Profile</Nav.Link></Nav.Item>
+          <Nav.Item><Nav.Link href="/create-task">Create Task</Nav.Link></Nav.Item>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

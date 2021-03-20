@@ -10,8 +10,8 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import { NavigationBar}  from './NavigationBar';
 import Profile from "./Profile";
-import Home from "./Home"
-
+import Home from "./Home";
+import CreateTask from "./CreateTask";
 
 function App() {
   return (
@@ -38,17 +38,19 @@ function App() {
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}>
       <div className="w-100" style={{ maxWidth: "400px" }}>
-      <Router>
-        <AuthProvider>
-          <Switch>
-            <PrivateRoute exact path="/profile" component={Profile} />
-            <PrivateRoute path="/update-profile" component={UpdateProfile} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/forgot-password" component={ForgotPassword} />
-          </Switch>
-        </AuthProvider>
-      </Router>
+        <Router>
+          <AuthProvider>
+            <Switch>
+              <PrivateRoute exact path="/profile" component={Profile} />
+              <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <PrivateRoute path="/create-task" component={CreateTask} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+            </Switch>
+          </AuthProvider>
+        </Router>
+
       </div>
     </Container>
     </>
