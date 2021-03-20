@@ -1,0 +1,52 @@
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.tabBar {
+    /*background-color: #7d7d7d; /* Debugging */
+    /*border: 5px solid black; /* Debugging */
+    min-height: 10vh;
+    max-height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+#tab {
+    float: left;
+    width: 25%;
+    background-color: white;
+    padding: 5px 5px 5px 5px;
+    /*background-color: #ababab; /* Debugging */
+    /*border: 5px solid black; /* Debugging */
+}
+
+#tab:hover {
+    cursor: pointer;
+}
+
+#mainContent {
+    /*background-color: #633636; /* Debugging */
+    /*border: 5px solid black; /* Debugging */
+    max-height: 80vh;
+    min-height: 80vh;
+    padding: 20px 10px 10px 20px;
+    overflow-y: scroll;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(3rem);
+    scroll-snap-type: y mandatory;
+    display: grid;
+}
+
+#mainContent::-webkit-scrollbar { width: 0 !important }
+
+#activeTask {
+    color: #213536;
+    background-color: white; /* Debugging */
+    border: 3px solid #6fa8aa; /* Debugging */
+    max-height: 15vh;
+    min-height: 15vh;
+    max-width: 10f;
+    min-width: 10f;
+    padding: 10px 10px 10px 10px;
+}
