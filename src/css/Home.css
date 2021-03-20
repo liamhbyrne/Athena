@@ -12,7 +12,7 @@ body, html {
 .mainPage {
     max-height: 80vh;
     overflow-y: scroll;
-    border: 1px solid gray;
+    border-bottom: 1px solid white;
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(3rem);
     scroll-snap-type: y mandatory;
@@ -20,8 +20,8 @@ body, html {
 
 .section {
     border-bottom: 1px solid white;
-    padding: 1rem;
-    font-size: 30px;
+    padding: 5rem;
+    font-size: 25px;
     color: black;
     text-align: center;
     display: flex;
@@ -34,15 +34,27 @@ body, html {
 
 .mainPage::-webkit-scrollbar { width: 0 !important }
 
-.left {
+.column {
     float: left;
     width: 50%;
-    background-color: #DDD;
-    padding: 30px 30px 30px 30px;
+    background-color: white;
+    border-bottom: 1px solid white;
+    padding: 50px 50px 50px 50px;
 }
 
-.right {
-    float: left;
-    width: 50%;
-    background-color: #CCC;
+#image1 {
+    width: 60%;
+    height: auto;
+}
+
+#image2 {
+    width: 100%;
+    height: auto;
+}
+
+#heading1 {
+    padding-top: 130px;
+}
+#heading2 {
+    padding-bottom: 30px;
 }
