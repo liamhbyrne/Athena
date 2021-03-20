@@ -13,6 +13,7 @@ import Profile from "./Profile";
 import Home from "./Home";
 import CreateTask from "./CreateTask";
 import SkillsChooser from "./SkillsChooser"
+import "../css/App.css"
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
     <Router>
       <AuthProvider>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Home}/>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
       </AuthProvider>
@@ -40,7 +41,7 @@ function App() {
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}>
-      <div className="w-100" style={{ maxWidth: "400px" }}>
+      <div className="w-100" id="temp">
         <Router>
           <AuthProvider>
             <Switch>
@@ -54,11 +55,9 @@ function App() {
             </Switch>
           </AuthProvider>
         </Router>
-
       </div>
     </Container>
     </>
   )
 }
-
 export default App
