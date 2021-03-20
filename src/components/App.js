@@ -10,12 +10,12 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import { NavigationBar}  from './NavigationBar';
 import Profile from "./Profile";
+import Home from "./Home"
 
 
 function App() {
   return (
     <>
-
     <AuthProvider>
       <Router>
         <Switch>
@@ -27,7 +27,8 @@ function App() {
     <Router>
       <AuthProvider>
         <Switch>
-          <PrivateRoute exact path="/" component={Dashboard} />
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
       </AuthProvider>
     </Router>

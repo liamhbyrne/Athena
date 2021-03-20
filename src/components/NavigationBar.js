@@ -31,7 +31,7 @@ export const NavigationBar = () => (
       </Form>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
+          <Nav.Item><Nav.Link href="/dashboard">My Dashboard</Nav.Link></Nav.Item> 
           <Nav.Item><Nav.Link href="/profile">Profile</Nav.Link></Nav.Item>
         </Nav>
       </Navbar.Collapse>
