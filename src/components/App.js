@@ -15,26 +15,31 @@ import CreateTask from "./CreateTask";
 function App() {
   return (
     <>
-    <Container
-      style={{ minWidth: "100%" }}
-    >
-        <AuthProvider>
-          <Router>
-            <Switch>
-              <PrivateRoute component={NavigationBar} />
-            </Switch>
-          </Router>
-        </AuthProvider>
-    </Container>
+
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <PrivateRoute component={NavigationBar} />
+        </Switch>
+      </Router>
+    </AuthProvider>
+
+    <Router>
+      <AuthProvider>
+        <Switch>
+          <PrivateRoute exact path="/" component={Dashboard} />
+        </Switch>
+      </AuthProvider>
+    </Router>
+
+    
     <Container
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
+      style={{ minHeight: "100vh" }}>
       <div className="w-100" style={{ maxWidth: "400px" }}>
         <Router>
           <AuthProvider>
             <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/create-task" component={CreateTask} />
@@ -44,6 +49,7 @@ function App() {
             </Switch>
           </AuthProvider>
         </Router>
+
       </div>
     </Container>
     </>
