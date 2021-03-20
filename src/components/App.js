@@ -17,6 +17,7 @@ import SkillsChooser from "./SkillsChooser"
 function App() {
   return (
     <>
+    {/* Puts the NavigationBar componenet on the top of the screen */}
     <AuthProvider>
       <Router>
         <Switch>
@@ -25,6 +26,7 @@ function App() {
       </Router>
     </AuthProvider>
 
+    {/* The components in this block are designed to take up the entire page */}
     <Router>
       <AuthProvider>
         <Switch>
@@ -34,7 +36,7 @@ function App() {
       </AuthProvider>
     </Router>
 
-
+    {/* The components in this block are designed to only take up a small section of the page */}
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}>

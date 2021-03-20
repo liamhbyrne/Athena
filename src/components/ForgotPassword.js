@@ -4,12 +4,14 @@ import { useAuth } from "../contexts/AuthContext"
 import { Link } from "react-router-dom"
 
 export default function ForgotPassword() {
+  // Constants
   const emailRef = useRef()
   const { resetPassword } = useAuth()
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
 
+  // Attempts to reset the user's password
   async function handleSubmit(e) {
     e.preventDefault()
 

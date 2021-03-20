@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 
 export default function Login() {
+  // Constants
   const emailRef = useRef()
   const passwordRef = useRef()
   const { login } = useAuth()
@@ -11,6 +12,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
+  // Attempts to log the user in
   async function handleSubmit(e) {
     e.preventDefault()
 

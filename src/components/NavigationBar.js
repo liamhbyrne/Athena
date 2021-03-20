@@ -2,6 +2,7 @@ import React from 'react';
 import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
 
+// Style for the Navigation Bar
 const Styles = styled.div`
   .navbar {
       background-color: #6fa8aa;
@@ -21,6 +22,7 @@ const Styles = styled.div`
     right: 25%;
   }
 `;
+
 export const NavigationBar = () => (
   <Styles>
     <Navbar expand="lg">
