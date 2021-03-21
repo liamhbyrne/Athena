@@ -3,7 +3,7 @@
 <div style="text-align:center"><img src="logoMD/athena.png" alt="Athena Logo" width="70%"/></div>
 
 **Athena**: *Remote Workflow Democratisation Productivity Platform for businesses  
-by* **Liam Byrne**, **Lucas Warwick**, **Sam Watson** *and* **Corbinian Kiby** 
+by* [**Liam Byrne**](https://www.linkedin.com/in/liam-h-byrne/), [**Lucas Warwick**](https://www.linkedin.com/in/lucas-warwick-b33b4b195), [**Sam Watson**](https://www.linkedin.com/in/sam-watson-010b7717a/) *and* [**Corbinian Kiby**](https://www.linkedin.com/in/corbinian-kiby/)
 
 ## Demos
 **Try it out**: https://start-athena.web.app/  
@@ -42,7 +42,9 @@ Athena focusses on remote work and it has been built remotely in a joint project
 
 *Figure 3* : The user is presented with a Dashboard split into 2 dynamic boxes. 'My Tasks' holds the tasks the user is currently pursuing. 'Task Pool' holds all tasks available to the user that have been released in their company. The user can drag and drop a task they wish to undertake in 'My Tasks' and the task becomes theirs.  
 
-This user is presented with a Firebase/TypeScript task first which is a skill they are proficent.
+This user is presented with a Firebase/TypeScript task first which is a skill they are proficent. In turn, improving workflow efficiency by encouraging those who are most applicable to undertake the task, no matter their position.  
 
 **Figure 3**  
 <img src="logoMD/pool.png" width="65%" />
+
+Thank you.
