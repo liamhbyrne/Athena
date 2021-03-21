@@ -51,10 +51,10 @@ body, html {
     color: grey;
 }
 
-.task-skills{
+.task-skills {
     margin: 0 auto;
-    position: absolute;
-    bottom: 15px;;
+    padding-top: 5px;
+    bottom: 15px;
 }
 
 .task-skill {

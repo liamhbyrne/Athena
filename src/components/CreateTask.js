@@ -95,7 +95,9 @@ export default function CreateTask() {
 
     // Attemps to write the tak information to the Cloud Firestore
     function writeTaskToFirestore() {
-
+        if (tags.length == 0) {
+          tags.push("None");
+        }
         db.collection("task").doc(uid()).set({
             userUID: auth.currentUser.uid,
             name: nameRef.current.value,

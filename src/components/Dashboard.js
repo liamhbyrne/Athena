@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { auth, db }  from '../firebase'
 import { useHistory } from "react-router-dom"
 import Modal from 'react-modal';
+import "../css/Dashboard.css"
 
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -109,7 +110,7 @@ async function getPool() {
     if (shortDesc.length > 150) {
       shortDesc = shortDesc.substring(0, 150) + "...";
     }
-    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, desc: shortDesc})
+    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills")})
   });
 
 }
@@ -128,7 +129,7 @@ async function getMyTasks() {
         var borderColor = "#00ff1e";
         break;
     }
-    myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: {borderColor}})
+    myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills")})
   });
 }
 
@@ -140,6 +141,7 @@ function closeModal() {
   setIsOpen(false);
 }
 
+var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243", "#71aef2", "#ea5645"];
   
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
@@ -199,11 +201,15 @@ function closeModal() {
                                         : "#2C2F33",
                                       color: "white",
                                       ...provided.draggableProps.style,
-                                      height: 200
+                                      height: 100
                                     }}
                                   >
                                     <div><strong>{item.taskName}</strong></div>
-                                    <div>{item.desc}</div>
+                                    <div class="task-skills">
+                                      {(item.skills).map(skill => (
+                                        <div class="task-skill" style={{backgroundColor: colorMap[skill.length % colorMap.length]}}>{skill}</div>
+                                        ))}
+                                    </div>
                                     <Modal isOpen={modalIsOpen} onClose={closeModal}
                                     aria-labelledby="simple-modal-title"
                                     aria-describedby="simple-modal-description">
