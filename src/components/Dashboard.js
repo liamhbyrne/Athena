@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Button } from "react-bootstrap"
 import { v4 as uuid } from 'uuid';
 import { auth, db }  from '../firebase'
 import { useHistory } from "react-router-dom"
+import Modal from 'react-modal';
 
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -54,6 +56,7 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function Dashboard() {
 const taskRef = db.collection("task");
+const [modalIsOpen,setIsOpen] = React.useState(false);
 const poolTasks = []
 const myItems = []
 const [columns, setColumns] = useState({
@@ -66,6 +69,8 @@ const [columns, setColumns] = useState({
     items: poolTasks
   }
 });
+
+Modal.setAppElement('body')
 
 useEffect(()=>{
   let promises = [getPool(), getMyTasks()]
@@ -103,6 +108,13 @@ async function getMyTasks() {
   });
 }
 
+function openModal() {
+  setIsOpen(true);
+}
+
+function closeModal() {
+  setIsOpen(false);
+}
 
   
   return (
@@ -147,6 +159,7 @@ async function getMyTasks() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
+                                    onClick={openModal}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
@@ -163,6 +176,11 @@ async function getMyTasks() {
                                     }}
                                   >
                                     {item.content}
+                                    <Modal isOpen={modalIsOpen} onClose={closeModal}
+                                    aria-labelledby="simple-modal-title"
+                                    aria-describedby="simple-modal-description">
+                                      <p>{item.content}</p>
+                                    </Modal>
                                   </div>
                                 );
                               }}
