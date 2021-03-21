@@ -9,6 +9,7 @@
     "bootstrap": "^4.6.0",
     "firebase": "^8.3.0",
     "react": "^17.0.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-bootstrap": "^1.5.2",
     "react-dnd": "^14.0.1",
     "react-dnd-html5-backend": "^14.0.0",
@@ -17,7 +18,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.0",
+    "react-use-uuid": "^1.1.0",
     "styled-components": "^5.2.1",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
