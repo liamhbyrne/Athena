@@ -42,7 +42,7 @@ function App() {
     <Container
       className="d-flex align-items-center justify-content-center"
       style={{ height: "100vh" }} id="centerContainer">
-      <div className="w-100" id="temp">
+      <div className="w-50" id="temp">
         <Router>
           <AuthProvider>
             <Switch>

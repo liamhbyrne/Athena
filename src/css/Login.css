@@ -1,10 +1,14 @@
 #cont {
-    position: absolute;
-    padding: 10px 10px 10px 10px;
+    padding: 20px;
     border: solid 3px #00b0f0;
-    width: 75vh;
-    height: 60vh;
-    top: -30vh;
-    left: 20vh;
+    height: 600px;
     background-color: #2C2F33;
+}
+
+.card-body{
+    padding: 0px !important;
+}
+
+.card{
+    border: 0px !important;
 }
