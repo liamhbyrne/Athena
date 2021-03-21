@@ -164,6 +164,17 @@ function closeModal() {
   setIsOpen(false);
 }
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243", "#71aef2", "#ea5645"];
   
   return (
@@ -187,7 +198,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
             >
               
               <div style={{ marginTop: 8 }}>
-                <Droppable droppableId={columnId} key={columnId}>
+                <Droppable droppableId={columnId} key={columnId} direction="horizontal">
                   {(provided, snapshot) => {
                     return (
 
@@ -207,7 +218,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                           padding: 10,
                           paddingTop: 20,
                           paddingBottom: 20,
-                          height: 400,
+                          height: "30vh",
                           minWidth: "100vw",
                           borderTop: "10px solid #c2b280",
                           borderBottom: "10px solid #c2b280",
@@ -235,14 +246,14 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                       userSelect: "none",
                                       padding: 24,
                                       margin: "0 8px 0 0",
-                                      height: 240,
-                                      border: "3px solid " + item.priority,
+                                      height: "20vh",
+                                      border: "8px solid " + item.priority,
                                       backgroundColor: snapshot.isDragging
                                         ? "#131517"
                                         : "#2C2F33",
                                       color: "white",
                                       ...provided.draggableProps.style,
-                                      width: 240
+                                      width: "22vh"
                                     }}
                                   >
                                     <div><strong>{item.taskName}</strong></div>
@@ -253,10 +264,13 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                         ))}
                                     </div>
 
-                                    <Modal isOpen={modalIsOpen} onClose={closeModal}
-                                    aria-labelledby="simple-modal-title"
-                                    aria-describedby="simple-modal-description">
-                                      <p>{item.content}</p>
+                                    <Modal 
+                                      isOpen={modalIsOpen} 
+                                      onClose={closeModal} 
+                                      style={customStyles}
+                                    >
+                                      <h2>Hello</h2>
+                                      <button onClick={closeModal}>close</button>
                                     </Modal>
                                   </div>
                                 );
