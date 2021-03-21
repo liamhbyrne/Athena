@@ -102,7 +102,6 @@ body, html {
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(3rem);
     scroll-snap-type: y mandatory;
-    display: grid;
 }
 
 #mainContent::-webkit-scrollbar { width: 0 !important }
@@ -137,4 +136,21 @@ body, html {
     height: 50vh;
     border: 3px solid #000000;
     padding: 20px;
+}
+
+#column1 {
+    float: left;
+    width: 25%
+}
+#column2 {
+    float: left;
+    width: 25%
+}
+#column3 {
+    float: left;
+    width: 25%
+}
+#column4 {
+    float: left;
+    width: 25%
 }
