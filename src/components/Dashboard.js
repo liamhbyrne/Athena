@@ -251,10 +251,10 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                       height: "20vh",
                                       maxWidth: 400,
                                       border: "8px solid " + item.priority,
-                                      boxShadow: "inset -1px -1px 17px -2px #602631",
+                                      boxShadow: "inset -1px -1px 17px -2px #502503",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#806651"
-                                        : "#836953",
+                                        ? "#603513"
+                                        : "#704523",
                                       color: "white",
                                       ...provided.draggableProps.style,
 
