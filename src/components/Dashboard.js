@@ -257,6 +257,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                         : "#836953",
                                       color: "white",
                                       ...provided.draggableProps.style,
+
                                     }}
                                   >
                                     <div><strong>{item.taskName}</strong></div>
@@ -266,15 +267,15 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                         <div class="task-skill" style={{backgroundColor: colorMap[skill.length % colorMap.length]}}>{skill}</div>
                                         ))}
                                     </div>
-
+                                    <div onClick={e => e.stopPropagation()}>
                                     <Modal 
                                       isOpen={modalIsOpen} 
                                       onClose={closeModal} 
-                                      style={customStyles}
                                     >
                                       <h2>Hello</h2>
                                       <button onClick={closeModal}>close</button>
                                     </Modal>
+                                    </div>
                                   </div>
                                 );
                               }}   
