@@ -59,11 +59,11 @@ const myItems = []
 const [columns, setColumns] = useState({
   [uuid()]: {
     name: "My Tasks",
-    items: poolTasks
+    items: myItems
   },
   [uuid()]: {
     name: "Task Pool",
-    items: myItems
+    items: poolTasks
   }
 });
 
@@ -74,11 +74,11 @@ useEffect(()=>{
       setColumns({
         [uuid()]: {
           name: "My Tasks",
-          items: poolTasks
+          items: myItems
         },
         [uuid()]: {
           name: "Task Pool",
-          items: myItems
+          items: poolTasks
         }
       });
     });
