@@ -120,20 +120,20 @@ async function getPool() {
   poolTasksDB.forEach(doc => {
     switch (doc.get("priority")) {
       case "Medium":
-        var borderColor = "#ffae00";
+        var borderColor = "#FFBF00";
         break;
       case "High":
-        var borderColor = "#ff0000";
+        var borderColor = "#D2222D";
         break;
       default:
-        var borderColor = "#00ff1e";
+        var borderColor = "#238823";
         break;
     }
     var shortDesc = doc.get("desc");
     if (shortDesc.length > 150) {
       shortDesc = shortDesc.substring(0, 150) + "...";
     }
-    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
+    poolTasks.push({ id: uuid(), taskName: doc.get("name"), desc: doc.get("desc"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
   });
 
 }
@@ -144,13 +144,13 @@ async function getMyTasks() {
     // Switch Statement
     switch (doc.get("priority")) {
       case "Medium":
-        var borderColor = "#ffbe00";
+        var borderColor = "#FFBF00";
         break;
       case "High":
-        var borderColor = "#ff0000";
+        var borderColor = "#D2222D";
         break;
       default:
-        var borderColor = "#33cc33";
+        var borderColor = "#238823";
         break;
     }
     myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
@@ -220,10 +220,12 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                           paddingTop: 20,
                           paddingBottom: 20,
                           paddingLeft: 40,
+                          marginLeft: 20,
                           height: "30vh",
                           minWidth: "100vw",
                           borderTop: "10px solid #99aab5",
                           borderBottom: "10px solid #99aab5",
+                          borderLeft: "10px solid #99aab5",
                           backgroundColor: "#00b0f0",
                           boxShadow: "inset -1px -9px 15px -8px #222, inset -1px 9px 15px -8px #222"
                         }}
@@ -248,15 +250,15 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                     style={{
                                       userSelect: "none",
                                       padding: 24,
-                                      margin: "0 8px 0 0",
+                                      margin: "0 16px 0 0",
                                       height: "20vh",
                                       maxWidth: 400,
                                       border: "8px solid " + item.priority,
-                                      boxShadow: "inset -1px -1px 17px -2px #502503",
+                                      boxShadow: "inset -1px -1px 17px -2px #95A5A6, 3px 5px 9px -3px rgba(0, 0, 0, 0.5)",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#603513"
-                                        : "#704523",
-                                      color: "white",
+                                        ? "#BDC3C7"
+                                        : "#ECF0F1",
+                                      color: "#2C3E50",
                                       ...provided.draggableProps.style,
 
                                     }}
@@ -272,8 +274,10 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                     <Modal 
                                       isOpen={modalIsOpen} 
                                       onClose={closeModal} 
+                                      style={customStyles}
                                     >
-                                      <h2>Hello</h2>
+                                      <h2>{item.taskName}</h2>
+                                      <p>{item.desc}</p>
                                       <button onClick={closeModal}>close</button>
                                     </Modal>
                                     </div>

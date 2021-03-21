@@ -12,3 +12,21 @@
 input{
     padding: 5px;
 }
+
+.ReactModal__Overlay{
+    background-color: rgba(0,0,0,0.15) !important;
+}
+
+.ReactModal__Content{
+    background-color: #2c2f33 !important;
+    max-width: 30vw;
+}
+
+.ReactModal__Content h2{
+    text-align: center;
+}
+
+.ReactModal__Content p{
+    text-align: center;
+    color: white;
+}
