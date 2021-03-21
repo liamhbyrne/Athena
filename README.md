@@ -31,6 +31,8 @@ Our full-stack cloud application is based on React, Firebase and Node.js. With o
 Athena focusses on remote work and it has been built remotely in a joint project between British and German team members. An entrepreneurial journey is most often a rocky one, but who knows: perhaps Athena will be able to lead by example and as one of the first 100% remotely built gamechangers of the digital age.
 
 ## The Platform
+The project was written in React with NodeJS, the backend uses Firebase Firestore and Authentication.  
+
 *Figure 1*: A new user signs up to Athena. They input skills they are proficient in and this is saved to their user. This will allow a matching algorithm to index available tasks in the 'Task Pool' in the order of how profient they are expected to be at that task.  
 *Figure 2*: A new task is created, it has associated skills and a brief. This task will be added to the 'Task Pool' on the Dashboard allowing users to undertake it.  
 
