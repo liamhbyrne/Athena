@@ -1,3 +1,11 @@
 #temp {
     background-color: #23272A;
 }
+
+.card-body, .card{
+    background-color: transparent;
+}
+
+.card{
+    border: 0px !important;
+}

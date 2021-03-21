@@ -21,20 +21,32 @@ export default function Home() {
     }
   }
 
+function goSignup(){
+  window.location.href="/signup";
+}
+
+
+  var sectionStyle = {
+    backgroundImage: "url(" + "landing_background.png" + ")",
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  }
+
   return (
     <>
-      <Card style={{backgroundColor: "#00b0f0"}}>
-        <Card.Body >
-          <div class="mainPage">
+
+          <div class="mainPage" style={ sectionStyle }>
             <div class="section">
               <div class="titleSection">
-              <img className="img-fluid" src={`${process.env.PUBLIC_URL}/main_logo.png`} id="mainimage" alt=""></img>
+              <img className="img-fluid" src={`${process.env.PUBLIC_URL}/landing_logo.png`} id="mainimage" alt=""></img>
               <br></br>
-              <button href="/signup">Sign Up</button>
+              <button onClick={goSignup}><b>Sign Up</b></button>
               <br></br>
-              <button href="/signup">Log In</button>
+              <p id="p-login">Already have an account? - <a href="/login">Log In</a></p>
               <br></br>
-              <button href="#">Read More</button>
+              <p><b>Scroll down to read more</b></p>
+              <p><b>V</b></p>
               </div>
 
             
@@ -77,8 +89,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </Card.Body>
-      </Card>
     </>
   )
 }

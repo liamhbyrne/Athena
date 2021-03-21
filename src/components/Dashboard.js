@@ -1,213 +1,238 @@
-import React, { useState } from "react"
-import { Card } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
+import React, { useState, useEffect } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Button } from "react-bootstrap"
+import { v4 as uuid } from 'uuid';
+import { auth, db }  from '../firebase'
 import { useHistory } from "react-router-dom"
+import Modal from 'react-modal';
 import "../css/Dashboard.css"
-import ReactDOM from 'react-dom'
-import { auth, db}  from '../firebase'
 
-var currentColumn = 0;
 
-function nextColumn() {
-  if (currentColumn + 1 == 4) {
-    currentColumn = 0;
-  }
-  else {
-    currentColumn++;
-  }
-}
-
-// Display Functions
-function resetContent() {
-  var mainContent = document.getElementById("mainContent");
-  var i;
-  for (i = 0; i < 4; i++) {
-    while (mainContent.children[i].lastElementChild) {
-      mainContent.children[i].removeChild(mainContent.children[i].lastElementChild);
-    }
-  }
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-// Open functions
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Display all the users Active Tasks
-async function openSetByMe() {
-  currentColumn = 0;
-  resetContent();
-  const taskRef = db.collection("task");
-  const myTasks = await taskRef.where("userUID", "==", auth.currentUser.uid).get();
-  myTasks.forEach(doc => {
-    createSetByMeTask(doc.get("priority"), doc.get("name"), doc.get("desc"), doc.get("skills"));
-  })
-}
-
-async function openActiveTasks() {
-  currentColumn = 0;
-  resetContent();
-  const taskRef = db.collection("task");
-  const myTasks = await taskRef.where("recipientUID", "==", auth.currentUser.uid).get();
-  myTasks.forEach(doc => {
-    createActiveTask(doc.get("priority"), doc.get("name"), doc.get("desc"), doc.get("skills"));
-  })
-}
-
-// Display the current Task Pool
-async function openTaskPool() {
-  currentColumn = 0;
-  resetContent();
-  const taskRef = db.collection("task");
-  const myTasks = await taskRef.where("userUID", "!=", auth.currentUser.uid).get();
-  myTasks.forEach(doc => {
-    createPoolTask(doc.get("priority"), doc.get("name"), doc.get("desc"), doc.get("skills"));
-  });
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-// Create functions
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-// Creates each individual Set by Me Task
-var setByMeTaskCount = 0;
-function createSetByMeTask (priority, name, desc, skills) {
-  if(desc.length > 150){
-    desc = desc.substring(0, 150) + "...";
-  }
-  var elements = getTaskBox(priority, name, desc, skills);
-  var mainDiv = document.getElementById("mainContent").children[currentColumn];
-  nextColumn();
-  var tempDiv = document.createElement("div");
-  tempDiv.id = activeTaskCount;
-  mainDiv.appendChild(tempDiv);
-  mainDiv.appendChild(document.createElement("p"));
-  ReactDOM.render(elements, document.getElementById(activeTaskCount));
-  activeTaskCount++;
-}
-
-// Creates each individual Active Task 
-var activeTaskCount = 0;
-function createActiveTask (priority, name, desc, skills) {
-  if(desc.length > 150){
-    desc = desc.substring(0, 150) + "...";
-  }
-  var elements = getTaskBox(priority, name, desc, skills);
-  var mainDiv = document.getElementById("mainContent").children[currentColumn];
-  nextColumn();
-  var tempDiv = document.createElement("div");
-  tempDiv.id = activeTaskCount;
-  mainDiv.appendChild(tempDiv);
-  mainDiv.appendChild(document.createElement("p"));
-  ReactDOM.render(elements, document.getElementById(activeTaskCount));
-  activeTaskCount++;
-}
-
-var poolTaskCount = 0;
-var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243", "#71aef2", "#ea5645"];
-// Creates each individual Pool Task
-function createPoolTask(priority, name, desc, skills) {
-  if(desc.length > 150){
-    desc = desc.substring(0, 150) + "...";
-  }
-  var elements = getTaskBox(priority, name, desc, skills);
-  var mainDiv = document.getElementById("mainContent").children[currentColumn];
-  nextColumn();
-  var tempDiv = document.createElement("div");
-  tempDiv.id = poolTaskCount;
-  mainDiv.appendChild(tempDiv);
-  mainDiv.appendChild(document.createElement("p"));
-  ReactDOM.render(elements, document.getElementById(poolTaskCount));
-  poolTaskCount++;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-// Other functions
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-// Calculates a percentage for how relavent the task is for the currentUser
-function calculateRelevancy (userSkills, requiredSkils) {
-  var total = requiredSkils.length;
-  var same = 0;
-  requiredSkils.forEach(skill => {
-    userSkills.forEach(userSkill => {
-      if (skill.valueOf() === userSkill.valueOf()) {
-        same++;
+const onDragEnd = (result, columns, setColumns) => {
+  if (!result.destination) return;
+  const { source, destination } = result;
+  
+  if (source.droppableId !== destination.droppableId) {
+    const sourceColumn = columns[source.droppableId];
+    const destColumn = columns[destination.droppableId];
+    const sourceItems = [...sourceColumn.items];
+    const destItems = [...destColumn.items];
+    const [removed] = sourceItems.splice(source.index, 1);
+    destItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...sourceColumn,
+        items: sourceItems
+      },
+      [destination.droppableId]: {
+        ...destColumn,
+        items: destItems
       }
+    });
+    if (destColumn.name == "My Tasks") {
+      db.collection("task").doc(removed.DBID).update ({
+        recipientUID: auth.currentUser.uid
     })
-  });
-  return (Math.round((same / total) * 100) / 100) * 100
-}
-
-function getTaskBox (priority, name, desc, skills) {
-  var elements = <div class={`task-container ${priority}`}>
-    <div class="task-name">{name}</div>
-    <div class="task-body">
-      <div class="task-desc">{desc}</div>
-      <div class="task-skills">
-        {skills.map(skill => (
-          <div class="task-skill" style={{backgroundColor: colorMap[skill.length % colorMap.length]}}>{skill}</div>
-        ))}
-      </div>
-    </div>
-  </div>;
-  return elements;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-// Main Code
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-export default function Dashboard() {
-  const [setError] = useState("")
-  const { logout } = useAuth()
-  const history = useHistory()
-
-  async function handleLogout() {
-    setError("")
-
-    try {
-      await logout()
-      history.push("/login")
-    } catch {
-      setError("Failed to log out")
+    } else {
+      db.collection("task").doc(removed.DBID).update ({
+        recipientUID: null
+    })
     }
+    
+  } else {
+    const column = columns[source.droppableId];
+    const copiedItems = [...column.items];
+    const [removed] = copiedItems.splice(source.index, 1);
+    copiedItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...column,
+        items: copiedItems
+      }
+    });
   }
+};
 
+function Dashboard() {
+const taskRef = db.collection("task");
+const [modalIsOpen,setIsOpen] = React.useState(false);
+const poolTasks = []
+const myItems = []
+const [columns, setColumns] = useState({
+  [uuid()]: {
+    name: "My Tasks",
+    items: myItems
+  },
+  [uuid()]: {
+    name: "Task Pool",
+    items: poolTasks
+  }
+});
 
+Modal.setAppElement('body')
 
-  return (
-      <>
-        <Card>
-          <Card.Body>
-            <div class="tabBar">
-              <div id="tab" onClick={openSetByMe}>
-                <h1>Set By Me</h1>
-              </div>
-              <div id="tab" onClick={openActiveTasks}>
-                <h1>My Tasks</h1>
-              </div>
-              <div id="tab" onClick={openTaskPool}>
-                <h1>Task Pool</h1>
-              </div>
-            </div>
-            <div id="mainContent">
-              <div id="column1"></div>
-              <div id="column2"></div>
-              <div id="column3"></div>
-              <div id="column4"></div>
-            </div>
-          </Card.Body>
-        </Card>
-      </>
+useEffect(()=>{
+  let promises = [getPool(), getMyTasks()]
+  Promise.all(promises)
+    .then(() => {
+      setColumns({
+        [uuid()]: {
+          name: "My Tasks",
+          items: myItems
+        },
+        [uuid()]: {
+          name: "Task Pool",
+          items: poolTasks
+        }
+      });
+    });
+  
+}, [])
 
-  )
+async function getPool() {
+  
+  const poolTasksDB = await taskRef.where("userUID", "!=", auth.currentUser.uid).get();
+  poolTasksDB.forEach(doc => {
+    switch (doc.get("priority")) {
+      case "Medium":
+        var borderColor = "#ffae00";
+        break;
+      case "High":
+        var borderColor = "#ff0000";
+        break;
+      default:
+        var borderColor = "#00ff1e";
+        break;
+    }
+    var shortDesc = doc.get("desc");
+    if (shortDesc.length > 150) {
+      shortDesc = shortDesc.substring(0, 150) + "...";
+    }
+    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills")})
+  });
+
 }
 
+async function getMyTasks() {
+  const myTasks = await taskRef.where("recipientID", "==", auth.currentUser.uid).get();
+  myTasks.forEach(doc => {
+    switch (doc.get("priority")) {
+      case "Medium":
+        var borderColor = "#ffae00";
+        break;
+      case "High":
+        var borderColor = "#ff0000";
+        break;
+      default:
+        var borderColor = "#00ff1e";
+        break;
+    }
+    myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills")})
+  });
+}
 
+function openModal() {
+  setIsOpen(true);
+}
+
+function closeModal() {
+  setIsOpen(false);
+}
+
+var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243", "#71aef2", "#ea5645"];
+  
+  return (
+    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+      <DragDropContext
+        onDragEnd={result => onDragEnd(result, columns, setColumns)}
+      >
+        {Object.entries(columns).map(([columnId, column], index) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+              }}
+              key={columnId}
+            >
+              <h2>{column.name}</h2>
+              <div style={{ margin: 8 }}>
+                <Droppable droppableId={columnId} key={columnId}>
+                  {(provided, snapshot) => {
+                    return (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        style={{
+                          background: snapshot.isDraggingOver
+                            ? "#23272a"
+                            : "#2C2F33",
+                          padding: 4,
+                          width: 400,
+                          minHeight: 500,
+                          border: "3px solid #00b0f0"
+                        }}
+                      >
+                        {column.items.map((item, index) => {
+                          return (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => {
+                                return (
+                                  <div
+                                    onClick={openModal}
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    style={{
+                                      userSelect: "none",
+                                      padding: 16,
+                                      margin: "0 0 8px 0",
+                                      minHeight: "50px",
+                                      border: "3px solid " + item.priority,
+                                      backgroundColor: snapshot.isDragging
+                                        ? "#131517"
+                                        : "#2C2F33",
+                                      color: "white",
+                                      ...provided.draggableProps.style,
+                                      height: 100
+                                    }}
+                                  >
+                                    <div><strong>{item.taskName}</strong></div>
+                                    <div class="task-skills">
+                                      {(item.skills).map(skill => (
+                                        <div class="task-skill" style={{backgroundColor: colorMap[skill.length % colorMap.length]}}>{skill}</div>
+                                        ))}
+                                    </div>
+                                    <Modal isOpen={modalIsOpen} onClose={closeModal}
+                                    aria-labelledby="simple-modal-title"
+                                    aria-describedby="simple-modal-description">
+                                      <p>{item.content}</p>
+                                    </Modal>
+                                  </div>
+                                );
+                              }}
+                            </Draggable>
+                          );
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    );
+                  }}
+                </Droppable>
+              </div>
+            </div>
+          );
+        })}
+      </DragDropContext>
+    </div>
+  );
+}
+
+export default Dashboard;

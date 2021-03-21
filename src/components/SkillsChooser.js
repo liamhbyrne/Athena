@@ -32,6 +32,7 @@ export default function SkillsChooser() {
             department: departmentRef.current.value
         }).then(function() {
             console.log("Document successfully written!");
+            window.location.href="/dashboard";
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);

@@ -4,6 +4,7 @@ body, html {
 }
 
 
+
 #root, .card, .card-body{
     background-color: #23272a;
     border: 0px !important;
@@ -50,10 +51,10 @@ body, html {
     color: grey;
 }
 
-.task-skills{
+.task-skills {
     margin: 0 auto;
-    position: absolute;
-    bottom: 15px;;
+    padding-top: 5px;
+    bottom: 15px;
 }
 
 .task-skill {

@@ -34,7 +34,7 @@ export default function UpdateProfile() {
 
     Promise.all(promises)
       .then(() => {
-        history.push("/")
+        window.location.href="/";
       })
       .catch(() => {
         setError("Failed to update account")

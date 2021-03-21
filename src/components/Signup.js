@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import "../css/Signup.css"
+import "../css/Style.css"
 
 export default function Signup() {
   // Constants
@@ -27,7 +28,7 @@ export default function Signup() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-      history.push("/skills")
+      window.location.href="/skills";
     } catch {
       setError("Failed to create an account")
     }

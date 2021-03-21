@@ -44,15 +44,8 @@ export default function CreateTask() {
           <h2 className="text-center mb-4">Create Task</h2>
 
           <Form>
-            <Form.Label style={{color: "white"}}>Type a skill followed by a comma or enter:</Form.Label>
-            <div>
-            <InputTag
-                onAddTag={onAddTag}
-                onDeleteTag={onDeleteTag}
-                defaultTags={tags}
-            />
-            </div>
 
+            
             {/* Name field */}
             <Form.Group id="name">
               <Form.Label style={{color: "white"}}>Task Name</Form.Label>
@@ -71,12 +64,20 @@ export default function CreateTask() {
               <Select
                 options={options}
                 onChange={setPriority}
-                placeholder={'priority'}
-                clearable={false}
-            />
-        
+                placeholder={'Select Priority...'}
+                clearable={false}/>
             </Form.Group>
             
+            {/* Skill field */}
+            <Form.Label style={{color: "white"}}>Skills - Press enter or comma after each</Form.Label>
+            <div>
+            <InputTag
+                onAddTag={onAddTag}
+                onDeleteTag={onDeleteTag}
+                defaultTags={tags}
+            />
+            </div>
+
             {/* Create the task */}
             <Button className="w-100" type="button" onClick={writeTaskToFirestore}>
               Create
@@ -94,7 +95,9 @@ export default function CreateTask() {
 
     // Attemps to write the tak information to the Cloud Firestore
     function writeTaskToFirestore() {
-
+        if (tags.length == 0) {
+          tags.push("None");
+        }
         db.collection("task").doc(uid()).set({
             userUID: auth.currentUser.uid,
             name: nameRef.current.value,
@@ -106,8 +109,7 @@ export default function CreateTask() {
             
         }).then(function() {
             console.log("Document successfully written!");
-            history.push("/dashboard")
-            window.location.reload();
+            window.location.href = "/dashboard";
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
