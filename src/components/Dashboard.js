@@ -28,11 +28,15 @@ const onDragEnd = (result, columns, setColumns) => {
       }
     });
     if (destColumn.name == "My Tasks") {
-      console.log(removed.DBID)
       db.collection("task").doc(removed.DBID).update ({
         recipientUID: auth.currentUser.uid
     })
+    } else {
+      db.collection("task").doc(removed.DBID).update ({
+        recipientUID: null
+    })
     }
+    
   } else {
     const column = columns[source.droppableId];
     const copiedItems = [...column.items];
