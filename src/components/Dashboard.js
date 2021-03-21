@@ -81,6 +81,7 @@ const taskRef = db.collection("task");
 const [modalIsOpen,setIsOpen] = useState(false);
 const [description, setDescription] = useState("")
 const [modalTitle, setTitle] = useState("")
+const [DBID, setDBID] = useState("")
 
 var poolTasks = []
 var myItems = []
@@ -161,13 +162,18 @@ async function getMyTasks() {
 }
 
 
-function openModal(title, desc) {
+function openModal(title, desc, DBID) {
   setDescription(desc);
   setTitle(title);
+  setDBID(DBID);
   setIsOpen(true);
 }
+
+
 async function deleteTask(DBID){
+  console.log("Deleting item: "+ DBID);
   const res = await db.collection('task').doc(DBID).delete();
+  window.location.reload();
 }
 
 function closeModal() {
@@ -213,7 +219,9 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
             >
               <h2 className="text-center mb-4">{modalTitle}</h2>
               <p>{description}</p>
+              <button  onClick={() => deleteTask(DBID)}>Task Completed</button>
               <button onClick={closeModal}>close</button>
+
             </Modal>
               
               <div style={{ marginTop: 8 }}>
@@ -260,7 +268,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    onClick={() => openModal(item.taskName, item.desc)}
+                                    onClick={() => openModal(item.taskName, item.desc, item.DBID)}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
