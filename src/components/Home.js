@@ -74,7 +74,8 @@ function goSignup(){
               <div class="column">
                 <h2><b>Easy to Use</b></h2>
                 <p><b>"As far as the customer is concerned, the interface is the product."</b><br/> - Jef Raskin, Human–Computer Interface expert<br/><br/>
-                Here at Athena, we designed our User Interface to be as user-friendly as possible, focusing on convenience and accessability. With a clean UI, viewing and creating <b>Tasks</b> is simple as simple as filling in a form, and letting the users come to you.</p>
+                Our usability philosophy is: <b>Do more, think less.</b><br/><br/>
+                Athena’s clean user interface ensures that everybody is on the same page regarding the status of all tasks. Workflows are seamlessly managed via drag-and-drop. Focus on your tasks at hand. No more hassle in the coordination jungle.</p>
               </div>
               <div class="column">
                 <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home3.PNG`} id="image3" alt=""></img>
@@ -85,8 +86,8 @@ function goSignup(){
               <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home4.PNG`} id="image4" alt=""></img>
               </div>
               <div class="column">
-                <h2><b>Specialised for You</b></h2>
-                <p>When creating a Task, you have full control over how it is viewed. For example, you can set the priority level so that users can see whether or not your task is needed to be completed quickly or not, with <b>Red</b> being the <b>Highest</b> and <b>Green</b> being the <b>Lowest</b>. As well as this, you can add required Skills, so that users can filter out the tasks which are specially suited for them. </p>
+                <h2><b>Lean Principle</b></h2>
+                <p>Athena integrates the lean principle into your workflows and culture. Tasks’ priorities are indicated by an intuitive colour scheme. Based on a matching between skills of contributors and those required for each task you can be ensured: Every task will find its rightful owner.</p>
               </div>
             </div>
           </div>
