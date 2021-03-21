@@ -55,6 +55,7 @@ body, html {
     margin: 0 auto;
     padding-top: 10px;
     bottom: 15px;
+    overflow: wrap;
 }
 
 .task-skill {
