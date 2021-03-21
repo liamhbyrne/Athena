@@ -88,10 +88,23 @@ useEffect(()=>{
 async function getPool() {
   
   const poolTasksDB = await taskRef.where("userUID", "!=", auth.currentUser.uid).get();
-
   poolTasksDB.forEach(doc => {
-    console.log(doc.id, doc.get("name"))
-    poolTasks.push({ id: uuid(), content: doc.get("name"), DBID: doc.id})
+    switch (doc.get("priority")) {
+      case "Medium":
+        var borderColor = "#ffae00";
+        break;
+      case "High":
+        var borderColor = "#ff0000";
+        break;
+      default:
+        var borderColor = "#00ff1e";
+        break;
+    }
+    var shortDesc = doc.get("desc");
+    if (shortDesc.length > 150) {
+      shortDesc = shortDesc.substring(0, 150) + "...";
+    }
+    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, desc: shortDesc})
   });
 
 }
@@ -99,7 +112,18 @@ async function getPool() {
 async function getMyTasks() {
   const myTasks = await taskRef.where("recipientID", "==", auth.currentUser.uid).get();
   myTasks.forEach(doc => {
-    myItems.push({ id: uuid(), content: doc.get("name"), DBID: doc.id})
+    switch (doc.get("priority")) {
+      case "Medium":
+        var borderColor = "#ffae00";
+        break;
+      case "High":
+        var borderColor = "#ff0000";
+        break;
+      default:
+        var borderColor = "#00ff1e";
+        break;
+    }
+    myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: {borderColor}})
   });
 }
 
@@ -130,11 +154,12 @@ async function getMyTasks() {
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "lightblue"
-                            : "lightgrey",
+                            ? "#23272a"
+                            : "#2C2F33",
                           padding: 4,
-                          width: 250,
-                          minHeight: 500
+                          width: 400,
+                          minHeight: 500,
+                          border: "3px solid #00b0f0"
                         }}
                       >
                         {column.items.map((item, index) => {
@@ -155,14 +180,17 @@ async function getMyTasks() {
                                       padding: 16,
                                       margin: "0 0 8px 0",
                                       minHeight: "50px",
+                                      border: "3px solid " + item.priority,
                                       backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
+                                        ? "#131517"
+                                        : "#2C2F33",
                                       color: "white",
-                                      ...provided.draggableProps.style
+                                      ...provided.draggableProps.style,
+                                      height: 200
                                     }}
                                   >
-                                    {item.content}
+                                    <div><strong>{item.taskName}</strong></div>
+                                    <div>{item.desc}</div>
                                   </div>
                                 );
                               }}
