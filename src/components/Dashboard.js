@@ -120,13 +120,13 @@ async function getPool() {
   poolTasksDB.forEach(doc => {
     switch (doc.get("priority")) {
       case "Medium":
-        var borderColor = "#ffae00";
+        var borderColor = "#FFBF00";
         break;
       case "High":
-        var borderColor = "#ff0000";
+        var borderColor = "#D2222D";
         break;
       default:
-        var borderColor = "#00ff1e";
+        var borderColor = "#238823";
         break;
     }
     var shortDesc = doc.get("desc");
@@ -143,13 +143,13 @@ async function getMyTasks() {
   myTasks.forEach(doc => {
     switch (doc.get("priority")) {
       case "Medium":
-        var borderColor = "#ffbe00";
+        var borderColor = "#FFBF00";
         break;
       case "High":
-        var borderColor = "#ff0000";
+        var borderColor = "#D2222D";
         break;
       default:
-        var borderColor = "#33cc33";
+        var borderColor = "#238823";
         break;
     }
     myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
