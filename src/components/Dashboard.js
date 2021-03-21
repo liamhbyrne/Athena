@@ -78,7 +78,10 @@ const onDragEnd = (result, columns, setColumns) => {
 
 function Dashboard() {
 const taskRef = db.collection("task");
-const [modalIsOpen,setIsOpen] = React.useState(false);
+const [modalIsOpen,setIsOpen] = useState(false);
+const [description, setDescription] = useState("")
+const [modalTitle, setTitle] = useState("")
+
 var poolTasks = []
 var myItems = []
 const [columns, setColumns] = useState({
@@ -156,7 +159,9 @@ async function getMyTasks() {
   });
 }
 
-function openModal() {
+function openModal(title, desc) {
+  setDescription(desc);
+  setTitle(title);
   setIsOpen(true);
 }
 
@@ -196,6 +201,15 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
               }}
               key={columnId}
             >
+              <Modal 
+              isOpen={modalIsOpen} 
+              onClose={closeModal} 
+              style={customStyles}
+            >
+              <h2 className="text-center mb-4">{modalTitle}</h2>
+              <p>{description}</p>
+              <button onClick={closeModal}>close</button>
+            </Modal>
               
               <div style={{ marginTop: 8 }}>
                 <Droppable droppableId={columnId} key={columnId} direction="horizontal">
@@ -241,7 +255,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    onClick={openModal}
+                                    onClick={() => openModal(item.taskName, item.desc)}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
@@ -270,15 +284,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                         ))}
                                     </div>
                                     <div onClick={e => e.stopPropagation()}>
-                                    <Modal 
-                                      isOpen={modalIsOpen} 
-                                      onClose={closeModal} 
-                                      style={customStyles}
-                                    >
-                                      <h2>{item.taskName}</h2>
-                                      <p>{item.desc}</p>
-                                      <button onClick={closeModal}>close</button>
-                                    </Modal>
+          
                                     </div>
                                   </div>
                                 );
