@@ -164,6 +164,7 @@ async function getMyTasks() {
 function openModal(title, desc) {
   setDescription(desc);
   setTitle(title);
+  setIsOpen(true);
 }
 async function deleteTask(DBID){
   const res = await db.collection('task').doc(DBID).delete();
