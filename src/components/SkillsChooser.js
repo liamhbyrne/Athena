@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Card, Button, Alert, Form } from "react-bootstrap"
 import InputTag from "./InputTag";
 import { db, auth }  from '../firebase'
+import "../css/Skills.css"
 
 export default function SkillsChooser() {
     // Constants

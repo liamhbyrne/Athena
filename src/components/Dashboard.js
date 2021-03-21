@@ -144,6 +144,7 @@ async function getPool() {
 async function getMyTasks() {
   const myTasks = await taskRef.where("recipientUID", "==", auth.currentUser.uid).get();
   myTasks.forEach(doc => {
+    // Switch Statement
     switch (doc.get("priority")) {
       case "Medium":
         var borderColor = "#FFBF00";
@@ -159,10 +160,13 @@ async function getMyTasks() {
   });
 }
 
+
 function openModal(title, desc) {
   setDescription(desc);
   setTitle(title);
-  setIsOpen(true);
+
+async function deleteTask(DBID){
+  const res = await db.collection('task').doc(DBID).delete();
 }
 
 function closeModal() {
@@ -265,9 +269,8 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                       padding: 24,
                                       margin: "0 16px 0 0",
                                       height: "20vh",
-                                      maxWidth: 400,
                                       border: "8px solid " + item.priority,
-                                      boxShadow: "inset -1px -1px 17px -2px #95A5A6, 3px 5px 9px -3px #000000",
+                                      boxShadow: "inset -1px -1px 17px -2px #95A5A6, 3px 5px 9px -3px rgba(0, 0, 0, 0.5)",
                                       backgroundColor: snapshot.isDragging
                                         ? "#BDC3C7"
                                         : "#ECF0F1",
