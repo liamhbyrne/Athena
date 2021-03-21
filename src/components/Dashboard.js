@@ -157,6 +157,10 @@ async function getMyTasks() {
   });
 }
 
+async function deleteTask(DBID){
+  const res = await db.collection('task').doc(DBID).delete();
+}
+
 function openModal() {
   setIsOpen(true);
 }
@@ -252,7 +256,6 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                       padding: 24,
                                       margin: "0 16px 0 0",
                                       height: "20vh",
-                                      maxWidth: 400,
                                       border: "8px solid " + item.priority,
                                       boxShadow: "inset -1px -1px 17px -2px #95A5A6, 3px 5px 9px -3px rgba(0, 0, 0, 0.5)",
                                       backgroundColor: snapshot.isDragging
