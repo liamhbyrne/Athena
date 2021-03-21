@@ -156,6 +156,10 @@ async function getMyTasks() {
   });
 }
 
+async function deleteTask(DBID){
+  const res = await db.collection('task').doc(DBID).delete();
+}
+
 function openModal() {
   setIsOpen(true);
 }
