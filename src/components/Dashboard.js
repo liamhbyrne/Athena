@@ -141,6 +141,7 @@ async function getPool() {
 async function getMyTasks() {
   const myTasks = await taskRef.where("recipientUID", "==", auth.currentUser.uid).get();
   myTasks.forEach(doc => {
+    // Switch Statement
     switch (doc.get("priority")) {
       case "Medium":
         var borderColor = "#ffbe00";
