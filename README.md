@@ -2,10 +2,14 @@
 *Future of Work* case set by **Accenture** 
 <div style="text-align:center"><img src="logoMD/athena.png" alt="Athena Logo" width="70%"/></div>
 
-Remote Workflow Democratisation Productivity Platform for businesses by **Liam Byrne**, **Lucas Warwick**, **Sam Watson** and **Corbinian Kiby**  
+**Athena**: *Remote Workflow Democratisation Productivity Platform for businesses  
+by* **Liam Byrne**, **Lucas Warwick**, **Sam Watson** *and* **Corbinian Kiby** 
+
+## Demos
 **Try it out**: https://start-athena.web.app/  
 
 [HackJunction Submission](https://app.hackjunction.com/projects/start-hack/view/605558778047650043787660)  
+
 **Demo Youtube Video**:  
 [![Athena Demo Video](https://img.youtube.com/vi/QMWlMzxDEpo/0.jpg)](https://youtu.be/QMWlMzxDEpo)
 
@@ -37,6 +41,8 @@ Athena focusses on remote work and it has been built remotely in a joint project
 </p>  
 
 *Figure 3* : The user is presented with a Dashboard split into 2 dynamic boxes. 'My Tasks' holds the tasks the user is currently pursuing. 'Task Pool' holds all tasks available to the user that have been released in their company. The user can drag and drop a task they wish to undertake in 'My Tasks' and the task becomes theirs.  
+
+This user is presented with a Firebase/TypeScript task first which is a skill they are proficent.
 
 **Figure 3**  
 <img src="logoMD/pool.png" width="65%" />
