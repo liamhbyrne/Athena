@@ -32,7 +32,7 @@ body, html {
     
     justify-content: center;
     scroll-snap-align: start;
-    height: 80vh;
+    height: 90vh;
     overflow-y: hidden;
     color: #ffffff;
     font-weight: 400;
@@ -93,6 +93,12 @@ button{
     width: 40%;
     height: auto;
     margin-top: 20%;
+    border-radius: 20px;
+}
+
+#image4 {
+    margin-top: 10%;
+    border-radius: 20px;
 }
 
 #heading1 {

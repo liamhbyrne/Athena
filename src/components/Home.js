@@ -72,8 +72,9 @@ function goSignup(){
             </div>
             <div class="section">
               <div class="column">
-                <h2><b>Heading 3</b></h2>
-                <p><b>Explains that the UI is easy to use and isn't complicated for the users. Also states that you can easily manage your tasks.</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin finibus risus nec faucibus. Sed aliquam nisl a nunc malesuada, vel consectetur diam congue. Curabitur suscipit erat sem, nec egestas libero tempus et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et mattis felis. Nullam nisi nulla, pharetra non convallis nec, placerat at nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                <h2><b>Easy to Use</b></h2>
+                <p><b>"As far as the customer is concerned, the interface is the product."</b><br/> - Jef Raskin, Human–Computer Interface expert<br/><br/>
+                Here at Athena, we designed our User Interface to be as user-friendly as possible, focusing on convenience and accessability. With a clean UI, viewing and creating <b>Tasks</b> is simple as simple as filling in a form, and letting the users come to you.</p>
               </div>
               <div class="column">
                 <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home3.PNG`} id="image3" alt=""></img>
@@ -81,11 +82,11 @@ function goSignup(){
             </div>
             <div class="section">
               <div class="column">
-                <p>PICTURE OF THE DASHBOARD</p>
+              <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home4.PNG`} id="image4" alt=""></img>
               </div>
               <div class="column">
-                <h2><b>Heading 4</b></h2>
-                <p><b>Explanation of how the dashboard looks, the features which are most comman and it's simplicity.</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin finibus risus nec faucibus. Sed aliquam nisl a nunc malesuada, vel consectetur diam congue. Curabitur suscipit erat sem, nec egestas libero tempus et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et mattis felis. Nullam nisi nulla, pharetra non convallis nec, placerat at nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                <h2><b>Specialised for You</b></h2>
+                <p>When creating a Task, you have full control over how it is viewed. For example, you can set the priority level so that users can see whether or not your task is needed to be completed quickly or not, with <b>Red</b> being the <b>Highest</b> and <b>Green</b> being the <b>Lowest</b>. As well as this, you can add required Skills, so that users can filter out the tasks which are specially suited for them. </p>
               </div>
             </div>
           </div>
