@@ -167,22 +167,26 @@ function closeModal() {
 var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243", "#71aef2", "#ea5645"];
   
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+    <div style={{ display: "flex", flexDirection: "column",justifyContent: "center", alignItems:"flex-start",width: "100%" }}>
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
+            <div>
+            <h2 style={{textAlign: "center", marginTop: 32}}>{column.name}</h2>
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
+                flexDirection: "row",
+                alignItems: "center",
+                float: "center"
+
               }}
               key={columnId}
             >
-              <h2>{column.name}</h2>
-              <div style={{ margin: 8 }}>
+              
+              <div style={{ marginTop: 8 }}>
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
@@ -192,12 +196,22 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "#23272a"
-                            : "#2C2F33",
-                          padding: 4,
-                          width: 400,
-                          minHeight: 500,
-                          border: "3px solid #00b0f0"
+                            ? "#0090d0"
+                            : "#00b0f0",
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          flexFlow: "row",
+                          flexWrap: "nowrap",
+                          padding: 10,
+                          paddingTop: 20,
+                          paddingBottom: 20,
+                          height: 400,
+                          minWidth: "100vw",
+                          borderTop: "10px solid #c2b280",
+                          borderBottom: "10px solid #c2b280",
+                          backgroundColor: "#00b0f0"
                         }}
                       >
 
@@ -219,16 +233,16 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
 
                                     style={{
                                       userSelect: "none",
-                                      padding: 16,
-                                      margin: "0 0 8px 0",
-                                      minHeight: "50px",
+                                      padding: 24,
+                                      margin: "0 8px 0 0",
+                                      height: 240,
                                       border: "3px solid " + item.priority,
                                       backgroundColor: snapshot.isDragging
                                         ? "#131517"
                                         : "#2C2F33",
                                       color: "white",
                                       ...provided.draggableProps.style,
-                                      height: 100
+                                      width: 240
                                     }}
                                   >
                                     <div><strong>{item.taskName}</strong></div>
@@ -256,6 +270,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                   }}
                 </Droppable>
               </div>
+            </div>
             </div>
           );
         })}
