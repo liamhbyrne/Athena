@@ -1,0 +1,14 @@
+
+.tag-list div{
+    background-color: #23272a;
+    padding: 4px !important;
+    padding-right: 8px !important;
+    font-size: 1.2em !important;
+    font-weight: 600;
+    border-radius: 10px;
+    border: solid 5px #99aab5 !important;
+}
+
+input{
+    padding: 5px;
+}
