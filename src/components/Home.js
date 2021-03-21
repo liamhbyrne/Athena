@@ -21,6 +21,10 @@ export default function Home() {
     }
   }
 
+function goSignup(){
+  window.location.href="/signup";
+}
+
 
   var sectionStyle = {
     backgroundImage: "url(" + "landing_background.png" + ")",
@@ -37,7 +41,7 @@ export default function Home() {
               <div class="titleSection">
               <img className="img-fluid" src={`${process.env.PUBLIC_URL}/landing_logo.png`} id="mainimage" alt=""></img>
               <br></br>
-              <button href="/signup"><b>Sign Up</b></button>
+              <button onClick={goSignup}><b>Sign Up</b></button>
               <br></br>
               <p id="p-login">Already have an account? - <a href="/login">Log In</a></p>
               <br></br>
