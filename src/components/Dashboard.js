@@ -133,7 +133,7 @@ async function getPool() {
     if (shortDesc.length > 150) {
       shortDesc = shortDesc.substring(0, 150) + "...";
     }
-    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
+    poolTasks.push({ id: uuid(), taskName: doc.get("name"), desc: doc.get("desc"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
   });
 
 }
@@ -271,8 +271,10 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                     <Modal 
                                       isOpen={modalIsOpen} 
                                       onClose={closeModal} 
+                                      style={customStyles}
                                     >
-                                      <h2>Hello</h2>
+                                      <h2>{item.taskName}</h2>
+                                      <p>{item.desc}</p>
                                       <button onClick={closeModal}>close</button>
                                     </Modal>
                                     </div>
