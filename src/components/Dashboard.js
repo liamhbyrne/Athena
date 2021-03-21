@@ -143,13 +143,13 @@ async function getMyTasks() {
   myTasks.forEach(doc => {
     switch (doc.get("priority")) {
       case "Medium":
-        var borderColor = "#ffae00";
+        var borderColor = "#ffbe00";
         break;
       case "High":
         var borderColor = "#ff0000";
         break;
       default:
-        var borderColor = "#00ff1e";
+        var borderColor = "#33cc33";
         break;
     }
     myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
@@ -207,7 +207,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "#0090d0"
+                            ? "#00b0f0"
                             : "#00b0f0",
                           display: "flex",
                           flexDirection: "row",
@@ -218,11 +218,13 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                           padding: 10,
                           paddingTop: 20,
                           paddingBottom: 20,
+                          paddingLeft: 40,
                           height: "30vh",
                           minWidth: "100vw",
-                          borderTop: "10px solid #c2b280",
-                          borderBottom: "10px solid #c2b280",
-                          backgroundColor: "#00b0f0"
+                          borderTop: "10px solid #99aab5",
+                          borderBottom: "10px solid #99aab5",
+                          backgroundColor: "#00b0f0",
+                          boxShadow: "inset -1px -9px 15px -8px #222, inset -1px 9px 15px -8px #222"
                         }}
                       >
 
@@ -247,13 +249,14 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                       padding: 24,
                                       margin: "0 8px 0 0",
                                       height: "20vh",
+                                      maxWidth: 400,
                                       border: "8px solid " + item.priority,
+                                      boxShadow: "inset -1px -1px 17px -2px #602631",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#131517"
-                                        : "#2C2F33",
+                                        ? "#806651"
+                                        : "#836953",
                                       color: "white",
                                       ...provided.draggableProps.style,
-                                      width: "22vh"
                                     }}
                                   >
                                     <div><strong>{item.taskName}</strong></div>
