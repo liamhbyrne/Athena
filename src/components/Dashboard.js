@@ -93,7 +93,7 @@ useEffect(()=>{
 
 async function getPool() {
   
-  const poolTasksDB = await taskRef.where("userUID", "!=", auth.currentUser.uid).get();
+  const poolTasksDB = await taskRef.where("recipientUID", "==", null).get();
   poolTasksDB.forEach(doc => {
     switch (doc.get("priority")) {
       case "Medium":
@@ -116,7 +116,7 @@ async function getPool() {
 }
 
 async function getMyTasks() {
-  const myTasks = await taskRef.where("recipientID", "==", auth.currentUser.uid).get();
+  const myTasks = await taskRef.where("recipientUID", "==", auth.currentUser.uid).get();
   myTasks.forEach(doc => {
     switch (doc.get("priority")) {
       case "Medium":
@@ -163,6 +163,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {
                     return (
+
                       <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
@@ -176,6 +177,8 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                           border: "3px solid #00b0f0"
                         }}
                       >
+
+
                         {column.items.map((item, index) => {
                           return (
                             <Draggable
@@ -190,6 +193,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
+
                                     style={{
                                       userSelect: "none",
                                       padding: 16,
@@ -205,11 +209,13 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                     }}
                                   >
                                     <div><strong>{item.taskName}</strong></div>
+
                                     <div class="task-skills">
                                       {(item.skills).map(skill => (
                                         <div class="task-skill" style={{backgroundColor: colorMap[skill.length % colorMap.length]}}>{skill}</div>
                                         ))}
                                     </div>
+
                                     <Modal isOpen={modalIsOpen} onClose={closeModal}
                                     aria-labelledby="simple-modal-title"
                                     aria-describedby="simple-modal-description">
@@ -217,10 +223,13 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                     </Modal>
                                   </div>
                                 );
-                              }}
+                              }}   
                             </Draggable>
                           );
                         })}
+
+
+
                         {provided.placeholder}
                       </div>
                     );
