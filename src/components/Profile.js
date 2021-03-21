@@ -14,7 +14,7 @@ export default function Profile() {
 
     try {
       await logout()
-      history.push("/login")
+      window.location.href="/login";
     } catch {
       setError("Failed to log out")
     }

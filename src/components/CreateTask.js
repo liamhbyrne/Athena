@@ -106,8 +106,7 @@ export default function CreateTask() {
             
         }).then(function() {
             console.log("Document successfully written!");
-            history.push("/dashboard")
-            window.location.reload();
+            window.location.href = "/dashboard";
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
