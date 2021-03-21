@@ -219,10 +219,12 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                           paddingTop: 20,
                           paddingBottom: 20,
                           paddingLeft: 40,
+                          marginLeft: 20,
                           height: "30vh",
                           minWidth: "100vw",
                           borderTop: "10px solid #99aab5",
                           borderBottom: "10px solid #99aab5",
+                          borderLeft: "10px solid #99aab5",
                           backgroundColor: "#00b0f0",
                           boxShadow: "inset -1px -9px 15px -8px #222, inset -1px 9px 15px -8px #222"
                         }}
@@ -247,15 +249,15 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                     style={{
                                       userSelect: "none",
                                       padding: 24,
-                                      margin: "0 8px 0 0",
+                                      margin: "0 16px 0 0",
                                       height: "20vh",
                                       maxWidth: 400,
                                       border: "8px solid " + item.priority,
-                                      boxShadow: "inset -1px -1px 17px -2px #502503",
+                                      boxShadow: "inset -1px -1px 17px -2px #95A5A6, 3px 5px 9px -3px #000000",
                                       backgroundColor: snapshot.isDragging
-                                        ? "#603513"
-                                        : "#704523",
-                                      color: "white",
+                                        ? "#BDC3C7"
+                                        : "#ECF0F1",
+                                      color: "#2C3E50",
                                       ...provided.draggableProps.style,
 
                                     }}
