@@ -5,11 +5,17 @@ import styled from 'styled-components';
 // Style for the Navigation Bar
 const Styles = styled.div`
   .navbar {
-      background-color: #6fa8aa;
+      background-color: #2C2F33;
+      border-bottom: solid 3px #00b0f0;
     }
+   #navimage{
+       width: auto;
+       height: 80px;
+   }
+
   a, .navbar-nav, .navbar-light .nav-link {
     color: #FFFFFF;
-    &:hover { color: white; }
+    &:hover { color: white; } 
   }
   .navbar-brand {
     font-size: 1.4em;
@@ -26,11 +32,10 @@ const Styles = styled.div`
 export const NavigationBar = () => (
   <Styles>
     <Navbar expand="lg">
-      <Navbar.Brand href="/">Athena</Navbar.Brand>
+      <a href="/">
+        <img className="img-fluid" src={`${process.env.PUBLIC_URL}/nav_logo.png`} id="navimage" alt=""></img>
+      </a>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Form className="form-center">
-        <FormControl type="text" placeholder="Search for a Task..." className="" />
-      </Form>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item><Nav.Link href="/dashboard">My Dashboard</Nav.Link></Nav.Item> 

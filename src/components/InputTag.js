@@ -6,7 +6,6 @@ const cStyle = {
   position: "relative",
   display: "inline-block",
   width: "300px",
-  border: "1px solid lightblue",
   overflow: "auto"
 };
 const iStyle = {

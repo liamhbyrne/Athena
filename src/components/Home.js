@@ -21,34 +21,53 @@ export default function Home() {
     }
   }
 
+function goSignup(){
+  window.location.href="/signup";
+}
+
+
+  var sectionStyle = {
+    backgroundImage: "url(" + "landing_background.png" + ")",
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  }
+
   return (
     <>
-      <Card>
-        <Card.Body>
-          <div class="mainPage">
+
+          <div class="mainPage" style={ sectionStyle }>
             <div class="section">
               <div class="titleSection">
-                <h1 id="heading1" style={{fontSize: 150}}>Athena</h1>
-                <h3 id="heading2">Democratising Remote Workflows</h3>
-                <h6 id="heading3">Scroll Down for more Information</h6>
+              <img className="img-fluid" src={`${process.env.PUBLIC_URL}/landing_logo.png`} id="mainimage" alt=""></img>
+              <br></br>
+              <button onClick={goSignup}><b>Sign Up</b></button>
+              <br></br>
+              <p id="p-login">Already have an account? - <a href="/login">Log In</a></p>
+              <br></br>
+              <p><b>Scroll down to read more</b></p>
+              <p><b>V</b></p>
+              </div>
+
+            
+            </div>
+            <div class="section">
+              <div class="column">
+                <h2><b>Task Pooling</b></h2>
+                <p>Athena uses the idea of task pooling as an innovative solution to task delegation within an organisation. Instead of managers or co-workers assigning task to individuals, they simply put the task into a pool and the most applicable or most eager worker fulfils it. This creates a great environment in which someone who has a task that they aren't qualified to do can put it into the pool and someone who is qualified can do it. The result - a more distributed and democratised horiztonal working environment.</p>
+              </div>
+              <div class="column">
+                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/pooling.png`} id="image1" alt=""></img>
               </div>
             </div>
             <div class="section">
               <div class="column">
-                <h2><b>Heading 1</b></h2>
-                <p><b>Introduction to what Athena does, and why companies/public should use it.</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin finibus risus nec faucibus. Sed aliquam nisl a nunc malesuada, vel consectetur diam congue. Curabitur suscipit erat sem, nec egestas libero tempus et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et mattis felis. Nullam nisi nulla, pharetra non convallis nec, placerat at nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/remote_work.png`} id="image2" alt=""></img>
               </div>
               <div class="column">
-                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home1.jpg`} id="image1" alt=""></img>
-              </div>
-            </div>
-            <div class="section">
-              <div class="column">
-                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/home2.PNG`} id="image2" alt=""></img>
-              </div>
-              <div class="column">
-                <h2><b>Heading 2</b></h2>
-                <p><b>Describing how the filters work and the process the tasks can go through.</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin finibus risus nec faucibus. Sed aliquam nisl a nunc malesuada, vel consectetur diam congue. Curabitur suscipit erat sem, nec egestas libero tempus et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et mattis felis. Nullam nisi nulla, pharetra non convallis nec, placerat at nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                <h2><b>Remote Working</b></h2>
+                <p><b>"Our best estimate is that 25-30% of the workforce will be working-from-home multiple days a week by the end of 2021."</b><br/> - Kate Lister, President of Global Workplace Analytics<br/><br/>
+                  Remote working is on the rise and Athena's platform offers an empowering yet accountable solution. For workers, they have more control over the tasks they complete and their pace. For managers, they don't have to figure out where all their employees are at in their work and perfectly time issuing new tasks. It is a solution benefiical to all parties involved.</p>
               </div>
             </div>
             <div class="section">
@@ -70,8 +89,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </Card.Body>
-      </Card>
     </>
   )
 }

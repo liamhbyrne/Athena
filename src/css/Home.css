@@ -3,6 +3,9 @@ h1 {
     padding-bottom: 20px;
 }
 
+#root{
+    height: 100vh;
+}
 
 body, html {
     height: 100%;
@@ -10,16 +13,17 @@ body, html {
 }
 
 .mainPage {
-    max-height: 80vh;
+    max-height: 100vh;
     overflow-y: scroll;
-    border-bottom: 1px solid white;
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(3rem);
     scroll-snap-type: y mandatory;
+    color: white;
 }
 
+
+
 .section {
-    border-bottom: 1px solid white;
     padding: 5rem;
     font-size: 25px;
     color: black;
@@ -30,6 +34,23 @@ body, html {
     scroll-snap-align: start;
     height: 80vh;
     overflow-y: hidden;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+#p-login{
+    font-size: 14pt;
+}
+
+button{
+    background-color: #4079AC;
+    margin: 10px !important;
+    color: white;
+    border-radius: 30px !important;
+    border: solid 10px #272f33 !important;
+    padding: 10px 15px;
+    width: 360px;
+
 }
 
 .mainPage::-webkit-scrollbar { width: 0 !important }
@@ -37,19 +58,41 @@ body, html {
 .column {
     float: left;
     width: 50%;
-    background-color: white;
-    border-bottom: 1px solid white;
-    padding: 50px 50px 50px 50px;
+}
+
+.column h2 {
+    padding-top: 100px;
+}
+
+.column p {
+    padding-top: 10px;
+}
+
+#mainimage {
+    width: 40vh;
+    height: auto;
+    border-radius: 10%;
+    margin: 100px;
 }
 
 #image1 {
+    margin-top: 20%;
     width: 60%;
     height: auto;
+
 }
 
 #image2 {
-    width: 100%;
+    width: 80%;
     height: auto;
+    margin-top: 20%;
+    padding-right: 10px;
+}
+
+#image3 {
+    width: 40%;
+    height: auto;
+    margin-top: 20%;
 }
 
 #heading1 {
