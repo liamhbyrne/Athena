@@ -7,6 +7,27 @@ import { useHistory } from "react-router-dom"
 import Modal from 'react-modal';
 import "../css/Dashboard.css"
 
+const observer = db.collection("task")
+  .onSnapshot(querySnapshot => {
+    querySnapshot.docChanges().forEach(change => {
+      if (change.type === "added") {
+        console.log("New Task: ", change.doc.id);
+      }
+      if (change.type === "modified") {
+        if (change.doc.get("recipientUID") == null) {
+          console.log("Task added to Pool: ", change.doc.id);
+        }
+        else {
+          console.log("Task taken from Pool", change.doc.id);
+        }
+      }
+      if (change.type === "removed") {
+        console.log("Removed Task: ", change.doc.id);
+      }
+    });
+  });
+
+
 
 const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
@@ -58,8 +79,8 @@ const onDragEnd = (result, columns, setColumns) => {
 function Dashboard() {
 const taskRef = db.collection("task");
 const [modalIsOpen,setIsOpen] = React.useState(false);
-const poolTasks = []
-const myItems = []
+var poolTasks = []
+var myItems = []
 const [columns, setColumns] = useState({
   [uuid()]: {
     name: "My Tasks",
@@ -70,6 +91,8 @@ const [columns, setColumns] = useState({
     items: poolTasks
   }
 });
+
+
 
 Modal.setAppElement('body')
 
@@ -110,7 +133,7 @@ async function getPool() {
     if (shortDesc.length > 150) {
       shortDesc = shortDesc.substring(0, 150) + "...";
     }
-    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills")})
+    poolTasks.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
   });
 
 }
@@ -129,7 +152,7 @@ async function getMyTasks() {
         var borderColor = "#33cc33";
         break;
     }
-    myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills")})
+    myItems.push({ id: uuid(), taskName: doc.get("name"), DBID: doc.id, priority: borderColor, skills: doc.get("skills"), dbid: doc.id})
   });
 }
 
@@ -234,6 +257,7 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                         : "#704523",
                                       color: "white",
                                       ...provided.draggableProps.style,
+
                                     }}
                                   >
                                     <div><strong>{item.taskName}</strong></div>
@@ -243,24 +267,21 @@ var colorMap = ["#ff0460", "#cbdc56", "#64a3ea", 	"#ffc100", "#c356ea", "#8ff243
                                         <div class="task-skill" style={{backgroundColor: colorMap[skill.length % colorMap.length]}}>{skill}</div>
                                         ))}
                                     </div>
-
+                                    <div onClick={e => e.stopPropagation()}>
                                     <Modal 
                                       isOpen={modalIsOpen} 
                                       onClose={closeModal} 
-                                      style={customStyles}
                                     >
                                       <h2>Hello</h2>
                                       <button onClick={closeModal}>close</button>
                                     </Modal>
+                                    </div>
                                   </div>
                                 );
                               }}   
                             </Draggable>
                           );
                         })}
-
-
-
                         {provided.placeholder}
                       </div>
                     );
