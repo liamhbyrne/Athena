@@ -41,7 +41,7 @@ function App() {
     {/* The components in this block are designed to only take up a small section of the page */}
     <Container
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}>
+      style={{ height: "100vh" }} id="centerContainer">
       <div className="w-100" id="temp">
         <Router>
           <AuthProvider>
