@@ -47,6 +47,6 @@ The project was written in React with NodeJS, the backend uses Firebase Firestor
 This user is presented with a Firebase/TypeScript task first which is a skill they are proficent. In turn, improving workflow efficiency by encouraging those who are most applicable to undertake the task, no matter their position.  
 
 **Figure 3**  
-<img src="logoMD/pool.png" width="65%" />
+<img src="logoMD/pool2.png" width="65%" />
 
 Thank you.
